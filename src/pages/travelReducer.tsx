@@ -12,15 +12,15 @@ export interface TravelPageState {
 }
 
 export enum TravelPageActionType {
-    ADD_ITEM = 'ADD_ITEM',
-    REMOVE_ITEM = 'REMOVE_ITEM',
-    UPDATE_ITEM = 'UPDATE_ITEM',
+    ADD_DESTINATION = 'addDestination',
+    REMOVE_DESTINATION = 'removeDestination',
+    UPDATE_DESTINATION = 'updateDestination',
 }
 
 export type TravelPageAction = 
-    | { type: TravelPageActionType.ADD_ITEM, payload: TravelItem }
-    | { type: TravelPageActionType.REMOVE_ITEM, payload: string }
-    | { type: TravelPageActionType.UPDATE_ITEM, payload: TravelItem }
+    | { type: TravelPageActionType.ADD_DESTINATION, payload: TravelItem }
+    | { type: TravelPageActionType.REMOVE_DESTINATION, payload: string }
+    | { type: TravelPageActionType.UPDATE_DESTINATION, payload: TravelItem }
 
 
 export const initialState: TravelPageState = {
@@ -29,17 +29,17 @@ export const initialState: TravelPageState = {
 
 export const travelPageReducer = (state: TravelPageState, action: TravelPageAction): TravelPageState => {
     switch(action.type) {
-        case TravelPageActionType.ADD_ITEM:
+        case TravelPageActionType.ADD_DESTINATION:
             return {
                 ...state,
                 trips: [...state.trips, action.payload]
             }
-        case TravelPageActionType.REMOVE_ITEM:
+        case TravelPageActionType.REMOVE_DESTINATION:
             return {
                 ...state,
                 trips: state.trips.filter(trip => trip.id !== action.payload)
             }
-        case TravelPageActionType.UPDATE_ITEM:
+        case TravelPageActionType.UPDATE_DESTINATION:
             return {
                 ...state,
                 trips: state.trips.map(trip => trip.id === action.payload.id ? action.payload : trip)
@@ -48,4 +48,3 @@ export const travelPageReducer = (state: TravelPageState, action: TravelPageActi
             return state
     }
 }
-

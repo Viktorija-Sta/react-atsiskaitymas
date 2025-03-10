@@ -15,23 +15,30 @@ type TravelPageContextProviderProps = {
 export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps> = ({ children }) => {
     const [travelPageState, dispatch] = useReducer(travelPageReducer, initialState)
 
-    const addItem = (item: TravelItem) => dispatch({ type: TravelPageActionType.ADD_ITEM, payload: item })
-    const removeItem = (id: string) => dispatch({ type: TravelPageActionType.REMOVE_ITEM, payload: id })
-    const updateItem = (item: TravelItem) => dispatch({ type: TravelPageActionType.UPDATE_ITEM, payload: item })
+    const addItem = (item: TravelItem) => {
+        const newItem = { ...item, id: item.id }
+        dispatch({ type: TravelPageActionType.ADD_DESTINATION, payload: newItem })
+    }
+
+    // const addItem = (item: TravelItem) => dispatch({ type: TravelPageActionType.ADD_DESTINATION, payload: item })
+    const removeItem = (id: string) => dispatch({ type: TravelPageActionType.REMOVE_DESTINATION, payload: id })
+    const updateItem = (item: TravelItem) => dispatch({ type: TravelPageActionType.UPDATE_DESTINATION, payload: item })
     
     useEffect(() => {
-        try{
-
-       
-        fetch("http://localhost:3000/destinations")
-        .then((res) => res.json())
-        .then((data: TravelItem[]) => {
-            data.forEach((item) => addItem(item))
-        })
+        console.log("Loading destinations...");
+        try {
+            fetch("http://localhost:3000/destinations")
+                .then((res) => res.json())
+                .then((data: TravelItem[]) => {
+                    data.forEach((item) => {
+                        console.log("Adding item:", item);
+                        addItem(item);
+                    });
+                })
         } catch (error) {
-            console.error('Kalida gaunant duomenis:', error)
+            console.error('Klaida gaunant duomenis:', error);
         }
-    }, [])
+    }, []);
 
     const ctxValue: TravelPageContextType = {
         addItem,
