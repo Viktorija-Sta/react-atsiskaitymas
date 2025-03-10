@@ -1,7 +1,10 @@
 import { createContext, useContext, useReducer } from "react"
+import { initialState, TravelItem, TravelPageActionType, travelPageReducer, TravelPageState } from "./travelReducer"
 
 interface TravelPageContextType extends TravelPageState {
     addItem: (item: TravelItem) => void
+    removeItem: (id: string) => void
+    updateItem: (item: TravelItem) => void
 }
 const TravelPageContext = createContext<TravelPageContextType | undefined>(undefined)
 
@@ -12,18 +15,24 @@ type TravelPageContextProviderProps = {
 export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps> = ({ children }) => {
     const [travelPageState, dispatch] = useReducer(travelPageReducer, initialState)
 
-    const addItem = (item: TravelItem) => dispatch({ type: 'ADD_ITEM', payload: item )
+    const addItem = (item: TravelItem) => dispatch({ type: TravelPageActionType.ADD_ITEM, payload: item })
+    const removeItem = (id: string) => dispatch({ type: TravelPageActionType.REMOVE_ITEM, payload: id })
+    const updateItem = (item: TravelItem) => dispatch({ type: TravelPageActionType.UPDATE_ITEM, payload: item })
     
+    
+
+    const ctxValue: TravelPageContextType = {
+        addItem,
+        removeItem,
+        updateItem,
+        ...travelPageState
+    }
 
     return (
         <TravelPageContext.Provider value={ctxValue}>
             {children}
         </TravelPageContext.Provider>
     )
-}
-
-const ctxValue: TravelPageContextType = {
-    addItem
 }
 
 export const useTravelPageContext = () => {
