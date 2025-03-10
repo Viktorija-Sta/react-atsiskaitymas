@@ -1,1 +1,159 @@
-{}
+{
+    "destinations": [
+      {
+        "id": 1,
+        "title": "Paryžius, Prancūzija",
+        "description": "Romantiškas miestas su garsiais lankytinais objektais, tokiais kaip Eifelio bokštas ir Luvras.",
+        "price": 899,
+        "duration": "5 dienos",
+        "image": "paris.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Balis, Indonezija",
+        "description": "Egzotiška sala su balto smėlio paplūdimiais ir nuostabiais saulėlydžiais.",
+        "price": 1499,
+        "duration": "7 dienos",
+        "image": "bali.jpg"
+      },
+        {
+            "id": 3,
+            "title": "Niujorkas, JAV",
+            "description": "Didžiausias JAV miestas, kuriame galima pamatyti laisvės statulą ir pasivaikščioti Central Park.",
+            "price": 1299,
+            "duration": "7 dienos",
+            "image": "new_york.jpg"
+        },
+        {
+            "id": 4,
+            "title": "Roma, Italija",
+            "description": "Miestas, kuriame galima pamatyti senovinius pastatus, tokius kaip Koliziejus ir Fontanas di Trevi.",
+            "price": 999,
+            "duration": "6 dienos",
+            "image": "rome.jpg"
+        },
+        {
+            "id": 5,
+            "title": "Tokijas, Japonija",
+            "description": "Modernus miestas su aukščiausiais dangoraižiais ir tradicinėmis šventėmis.",
+            "price": 1599,
+            "duration": "8 dienos",
+            "image": "tokyo.jpg"
+        }
+    ],
+    "hotels": [
+        {
+            "id": 1,
+            "name": "Grand Hotel Paris",
+            "location": "Paryžius, Prancūzija",
+            "stars": 5,
+            "price_per_night": 250,
+            "image": "grand_hotel_paris.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Bali Paradise Resort",
+            "location": "Balis, Indonezija",
+            "stars": 4,
+            "price_per_night": 150,
+            "image": "bali_paradise_resort.jpg"
+        },
+        {
+            "id": 3,
+            "name": "New York City Hotel",
+            "location": "Niujorkas, JAV",
+            "stars": 4,
+            "price_per_night": 200,
+            "image": "new_york_city_hotel.jpg"
+        },
+        {
+            "id": 4,
+            "name": "Rome Luxury Hotel",
+            "location": "Roma, Italija",
+            "stars": 5,
+            "price_per_night": 300,
+            "image": "rome_luxury_hotel.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Tokyo Business Hotel",
+            "location": "Tokijas, Japonija",
+            "stars": 3,
+            "price_per_night": 100,
+            "image": "tokyo_business_hotel.jpg"
+        }
+    ],
+    "customers": [
+      {
+        "id": 1,
+        "name": "Jonas Petrauskas",
+        "email": "jonas@example.com",
+        "phone": "+37060012345",
+        "bookings": [
+          {
+            "destination_id": 1,
+            "hotel_id": 1,
+            "date": "2024-06-15",
+            "status": "Patvirtinta"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Ona Jonaitė",
+        "email": "ona@example.com",
+        "phone": "+37060054321",
+        "bookings": [
+          {
+            "destination_id": 2,
+            "hotel_id": 2,
+            "date": "2024-07-01",
+            "status": "Patvirtinta"
+          }
+        ]
+        },
+      {
+        "id": 2,
+        "name": "Ona Jonaitė",
+        "email": "ona@example.com",
+        "phone": "+37060054321",
+        "bookings": [
+          {
+            "destination_id": 2,
+            "hotel_id": 2,
+            "date": "2024-07-01",
+            "status": "Patvirtinta"
+          }
+        ]
+        },
+      {
+        "id": 2,
+        "name": "Ona Jonaitė",
+        "email": "ona@example.com",
+        "phone": "+37060054321",
+        "bookings": [
+          {
+            "destination_id": 2,
+            "hotel_id": 2,
+            "date": "2024-07-01",
+            "status": "Patvirtinta"
+          }
+        ]
+        },
+      {
+        "id": 2,
+        "name": "Ona Jonaitė",
+        "email": "ona@example.com",
+        "phone": "+37060054321",
+        "bookings": [
+          {
+            "destination_id": 2,
+            "hotel_id": 2,
+            "date": "2024-07-01",
+            "status": "Patvirtinta"
+          }
+        ]
+    }   
+    ]
+  }
+  

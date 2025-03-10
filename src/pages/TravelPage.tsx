@@ -1,7 +1,11 @@
+import TripList from "../components/Trip/TripList"
+import { TravelPageContextProvider } from "./TravelPageContextProvider"
+
 const TravelPage: React.FC = () => {
     return(
-        <div>TravelPage</div>
-        
+        <TravelPageContextProvider>
+            <TripList />
+        </TravelPageContextProvider>
     )
 }
 

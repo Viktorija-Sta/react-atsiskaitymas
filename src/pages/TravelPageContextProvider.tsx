@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react"
+import { createContext, useContext, useEffect, useReducer } from "react"
 import { initialState, TravelItem, TravelPageActionType, travelPageReducer, TravelPageState } from "./travelReducer"
 
 interface TravelPageContextType extends TravelPageState {
@@ -19,13 +19,26 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
     const removeItem = (id: string) => dispatch({ type: TravelPageActionType.REMOVE_ITEM, payload: id })
     const updateItem = (item: TravelItem) => dispatch({ type: TravelPageActionType.UPDATE_ITEM, payload: item })
     
-    
+    useEffect(() => {
+        try{
+
+       
+        fetch("http://localhost:3000/destinations")
+        .then((res) => res.json())
+        .then((data: TravelItem[]) => {
+            data.forEach((item) => addItem(item))
+        })
+        } catch (error) {
+            console.error('Kalida gaunant duomenis:', error)
+        }
+    }, [])
 
     const ctxValue: TravelPageContextType = {
         addItem,
         removeItem,
         updateItem,
         ...travelPageState
+       
     }
 
     return (

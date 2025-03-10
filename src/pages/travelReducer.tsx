@@ -8,7 +8,7 @@ export interface TravelItem {
 }
 
 export interface TravelPageState {
-    items: TravelItem[]
+    trips: TravelItem[]
 }
 
 export enum TravelPageActionType {
@@ -24,7 +24,7 @@ export type TravelPageAction =
 
 
 export const initialState: TravelPageState = {
-    items: []
+    trips: []
 }
 
 export const travelPageReducer = (state: TravelPageState, action: TravelPageAction): TravelPageState => {
@@ -32,17 +32,17 @@ export const travelPageReducer = (state: TravelPageState, action: TravelPageActi
         case TravelPageActionType.ADD_ITEM:
             return {
                 ...state,
-                items: [...state.items, action.payload]
+                trips: [...state.trips, action.payload]
             }
         case TravelPageActionType.REMOVE_ITEM:
             return {
                 ...state,
-                items: state.items.filter(item => item.id !== action.payload)
+                trips: state.trips.filter(trip => trip.id !== action.payload)
             }
         case TravelPageActionType.UPDATE_ITEM:
             return {
                 ...state,
-                items: state.items.map(item => item.id === action.payload.id ? action.payload : item)
+                trips: state.trips.map(trip => trip.id === action.payload.id ? action.payload : trip)
             }
         default:
             return state
