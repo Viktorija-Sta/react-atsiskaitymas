@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router";
-import { useTravelPageContext } from "../../../pages/TravelPageContextProvider";
+import { useNavigate } from "react-router"
+import { useTravelPageContext } from "../../pages/TravelPageContextProvider"
+
 
 const FormPage: React.FC = () => {
-    const { addItem } = useTravelPageContext()
+    const { addItem, trips } = useTravelPageContext()
     const navigate = useNavigate()
 
     const generateUniqueId = (): string => {
@@ -14,7 +15,7 @@ const FormPage: React.FC = () => {
         const form = e.target as HTMLFormElement
         const formData = new FormData(form)
         const title = formData.get('title') as string
-        const description = formData.get('description') as string;
+        const description = formData.get('description') as string
         const price = Number(formData.get('price'))
         const image = formData.get('image') as string
         const category = formData.get('category') as string
@@ -28,22 +29,16 @@ const FormPage: React.FC = () => {
             category,
         }
 
-        addItem(newTrip)
-
-        try {
-            await fetch("http://localhost:3000/destinations", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newTrip),
-            });
-        } catch (error) {
-            console.error('Klaida įrašant duomenis į db:', error)
+        const existingTrip = trips.find((trip) => trip.id === newTrip.id)
+        if (existingTrip) {
+            console.log("Kelionė jau yra sąraše.")
+            return
         }
 
-        navigate("/")
-        form.reset()
+        await addItem(newTrip)
+
+        navigate("/") 
+        form.reset() 
     }
 
     return (

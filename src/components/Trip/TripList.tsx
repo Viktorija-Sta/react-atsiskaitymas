@@ -1,11 +1,15 @@
 import { Link } from "react-router"
 import { useTravelPageContext } from "../../pages/TravelPageContextProvider"
 import TripItem from "./TripItem"
+import React from "react"
+
 
 const TripList: React.FC = () => {
-    const { trips } = useTravelPageContext()
+    const { trips, fetchDestinations } = useTravelPageContext()
     
-
+    React.useEffect(() => {
+        fetchDestinations()
+    }, [fetchDestinations])
 
 
     return (
@@ -17,8 +21,8 @@ const TripList: React.FC = () => {
             <h2>Naujausi kelionių pasiūlymai</h2>
             {trips.length > 0 ? (
                 <div className="trips">
-                    {trips.map((trip, index) => (
-                        <TripItem key={index} data={trip} />
+                    {trips.map((trip) => (
+                        <TripItem key={trip.id} data={trip} />
                     ))}
                 </div>
             ) : (
