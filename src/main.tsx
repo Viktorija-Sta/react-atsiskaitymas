@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path='/' element={<TravelPage />} />
           <Route path='create' element={<FormPage />} />
-          <Route path='trip' element={<TripInformation/>} />
+          <Route path='/trip/:id' element={<TripInformation/>} />
         </Routes>
       </BrowserRouter>
     </TravelPageContextProvider>

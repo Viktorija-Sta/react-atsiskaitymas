@@ -19,18 +19,18 @@ const TripList: React.FC = () => {
             </Link>
 
             <h2>Naujausi kelionių pasiūlymai</h2>
-            <Link to="/trip">
             
             {trips.length > 0 ? (
                 <div className="trips">
                     {trips.map((trip) => (
+                    <Link key={trip.id} to={`/trip/${trip.id}`}>
                         <TripItem key={trip.id} data={trip} />
+                    </Link>
                     ))}
                 </div>
             ) : (
                 <p>Atsiprašome, kelionių šiuo metu neturime</p>
             )}
-            </Link>
         </div>
     )
 }

@@ -4,46 +4,138 @@
       "id": "1",
       "title": "Paryžius, Prancūzija",
       "description": "Romantiškas miestas su garsiais lankytinais objektais, tokiais kaip Eifelio bokštas ir Luvras.",
+      "fullDescription": "Paryžius - vienas iš romantiškiausių miestų pasaulyje, kuris garsėja savo garsiais lankytinais objektais, tokiais kaip Eifelio bokštas, Luvras, Notr Damo katedra, Triumfo arka, Montmartro kalnas, Sena miesto gatvės ir aikštės bei daugybė kitų. Tai vienas iš tų miestų, kuriuos reikia pamatyti bent kartą gyvenime. Paryžiuje galima mėgautis prancūzišku maistu, vynu, ledais, kava, aukščiausios kokybės gelatu, o vakarais - pasivaikščioti po miesto gatves, kuriomis sklando romantiška atmosfera.",
       "price": 899,
       "duration": "5 dienos",
       "image": "https://www.makalius.lt/wp-content/travel-destination-images/29029-travel-destination/paryzius-790x363.jpeg",
-      "category": "Europa"
+      "category": "Europa",
+      "gallery": [
+        "https://www.makalius.lt/wp-content/travel-destination-images/29029-travel-destination/paryzius-790x363.jpeg",
+        "https://www.makalius.lt/wp-content/travel-destination-images/29029-travel-destination/paryzius-790x363.jpeg",
+        "https://www.makalius.lt/wp-content/travel-destination-images/29029-travel-destination/paryzius-790x363.jpeg"
+      ]
     },
     {
       "id": "2",
       "title": "Balis, Indonezija",
       "description": "Egzotiška sala su balto smėlio paplūdimiais ir nuostabiais saulėlydžiais.",
+      "fullDescription": " Bali - tai Indonezijos sala, kuri garsėja savo balto smėlio paplūdimiais, nuostabiais saulėlydžiais, turkiškai mėlynais vandenimis, egzotiška gamta, kultūra ir tradicijomis. Tai viena iš populiariausių atostogų vietų pasaulyje, kurioje galima mėgautis atostogomis visiems skoniams. Balio paplūdimiuose galima mėgautis saule, jūra, bangomis, vandens sportais, masažais, spa procedūromis, egzotišku maistu",
       "price": 1499,
       "duration": "7 dienos",
       "image": "https://www.pelago.com/img/destinations/bali/0619-0941_bali-xlarge.webp",
-      "category": "Azija"
+      "category": "Azija",
+      "gallery": [
+        "https://www.pelago.com/img/destinations/bali/0619-0941_bali-xlarge.webp",
+        "https://www.pelago.com/img/destinations/bali/0619-0941_bali-xlarge.webp",
+        "https://www.pelago.com/img/destinations/bali/0619-0941_bali-xlarge.webp"
+      ]
     },
     {
       "id": "3",
       "title": "Niujorkas, JAV",
       "description": "Didžiausias JAV miestas, kuriame galima pamatyti laisvės statulą ir pasivaikščioti Central Park.",
+      "fullDescription": " Niujorkas - didžiausias JAV miestas, kuriame galima pamatyti laisvės statulą, pasivaikščioti Central Park, aplankyti Niujorko muziejų, Niujorko operą, Niujorko prekybos centrą, Niujorko botanikos sodą, Niujorko zoologijos sodą, Niujorko planetariumą, Niujorko meno muziejų, Niujorko istorijos muziejų, Niujorko šiuolaikinio meno muziejų, Niujorko kinematografijos muziejų, Niujorko dizaino muziejų, Niujorko fotografijos muziejų, Niujorko vaikų muziejų, Niujorko mokslinio mokymo muziejų, Niujorko technologijų muziejų, Niujorko žydų muziejų, Niujorko karo muziejų, Niujorko karo oro laivyno muziejų, Niujorko karo jūrų muziejų, Niujorko karo laivų muziejų, Niujorko karo aviacijos muziejų, Niujorko karo istorijos muziejų, Niujorko karo laivų muziejų, Niujorko karo oro laivyno muziejų, Niujorko karo jūrų muziejų, Niujorko karo laivų muziejų, Niujorko karo aviacijos muziejų, Niujorko karo istorijos muziejų, Niujorko karo laivų muziejų, Niujorko karo oro laivyno muziejų, Niujorko karo jūrų muziejų ir daugybė kitų. Niujorke taip pat galima mėgautis amerikietišku maistu, vynu, ledais, kava, aukščiausios kokybės gelatu, o vakarais - pasivaikščioti po miesto gatves, kuriomis sklando romantiška atmosfera." ,
       "price": 1299,
       "duration": "7 dienos",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAti0sKNO6BKvubgMZ7_nngLKg8OItWLEq-Q&s",
-      "category": "Amerika"
+      "category": "Amerika",
+      "gallery": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAti0sKNO6BKvubgMZ7_nngLKg8OItWLEq-Q&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAti0sKNO6BKvubgMZ7_nngLKg8OItWLEq-Q&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAti0sKNO6BKvubgMZ7_nngLKg8OItWLEq-Q&s"
+      ]
     },
     {
       "id": "4",
       "title": "Roma, Italija",
       "description": "Miestas, kuriame galima pamatyti senovinius pastatus, tokius kaip Koliziejus ir Fontanas di Trevi.",
+      "fullDescription": "Roma - vienas iš seniausių ir įspūdingiausių Europos miestų, kuris garsėja savo istorija, kultūra, architektūra ir virtuve. Tai vienas iš tų miestų, kuriuos reikia pamatyti bent kartą gyvenime. Romoje galima pamatyti daugybę senovinių pastatų, tokių kaip Koliziejus, Forumas, Pantheonas, Fontanas di Trevi, Ispanų laiptai, Vatikano muziejus, Šventapilis, Panteonas, Romos forumas, Kapitolijus ir daugybė kitų. Romoje taip pat galima mėgautis itališku maistu, vynu, ledais, kava, aukščiausios kokybės gelatu, o vakarais - pasivaikščioti po miesto gatves, kuriomis sklando romantiška atmosfera.",
       "price": 999,
       "duration": "6 dienos",
       "image": "https://i.natgeofe.com/k/a6c9f195-de20-445d-9d36-745ef56042c5/OG_Colosseum_Ancient-Rome_KIDS_1122_3x2.jpg",
-      "category": "Europa"
+      "category": "Europa",
+      "gallery": [
+        "https://i.natgeofe.com/k/a6c9f195-de20-445d-9d36-745ef56042c5/OG_Colosseum_Ancient-Rome_KIDS_1122_3x2.jpg",
+        "https://i.natgeofe.com/k/a6c9f195-de20-445d-9d36-745ef56042c5/OG_Colosseum_Ancient-Rome_KIDS_1122_3x2.jpg",
+        "https://i.natgeofe.com/k/a6c9f195-de20-445d-9d36-745ef56042c5/OG_Colosseum_Ancient-Rome_KIDS_1122_3x2.jpg"
+      ]
     },
     {
       "id": "5",
       "title": "Tokijas, Japonija",
       "description": "Modernus miestas su aukščiausiais dangoraižiais ir tradicinėmis šventėmis.",
+      "fullDescription": "Sakoma, kad nuvykus į Japoniją galima pasijusti tarsi atsidūrus kitoje planetoje – nesuprantama kalba ir užrašai, svaiginantys megapoliai, kuriuos keičia ramybe dvelkiantys kaimai ir nuostabi gamta su legendiniu Fudžio kalnu, tikras japoniškas maistas, arbata, tradiciniai ritualai ir daugybė kitų patirčių, kurių tikėtis galima tik Tekančios saulės šalyje ir niekur daugiau. Visa tai atrodo dar gražiau ir autentiškau pavasarį – sakurų žydėjimo metu. Tai ypatingas laikotarpis, kai visi japonai išeina į gatves, parkus ir sodus, kad pasimėgautų šio žydėjimo grožiu. Tai ypatingas laikotarpis, kai visi japonai išeina į gatves, parkus ir sodus, kad pasimėgautų šio žydėjimo grožiu.",
       "price": 1599,
       "duration": "8 dienos",
       "image": "https://caz.interluxtravel.lv/images/tours/323.jpg",
-      "category": "Azija"
+      "category": "Azija",
+      "gallery": [
+        "https://caz.interluxtravel.lv/images/tours/323.jpg",
+        "https://caz.interluxtravel.lv/images/tours/323.jpg",
+        "https://caz.interluxtravel.lv/images/tours/323.jpg"
+      ]
+    }
+  ],
+  "hotels": [
+    {
+      "id": "1",
+      "destinationsId": "1",
+      "name": "Hotel Eiffel",
+      "price": 120
+    },
+    {
+      "id": "2",
+      "destinationsId": "1",
+      "name": "Hotel Louvre",
+      "price": 100
+    },
+    {
+      "id": "3",
+      "destinationsId": "2",
+      "name": "Hotel Bali",
+      "price": 150
+    },
+    {
+      "id": "4",
+      "destinationsId": "2",
+      "name": "Hotel Paradise",
+      "price": 200
+    },
+    {
+      "id": "5",
+      "destinationsId": "3",
+      "name": "Hotel New York",
+      "price": 180
+    },
+    {
+      "id": "6",
+      "destinationsId": "3",
+      "name": "Hotel Manhattan",
+      "price": 160
+    },
+    {
+      "id": "7",
+      "destinationsId": "4",
+      "name": "Hotel Rome",
+      "price": 130
+    },
+    {
+      "id": "8",
+      "destinationsId": "4",
+      "name": "Hotel Colosseum",
+      "price": 110
+    },
+    {
+      "id": "9",
+      "destinationsId": "5",
+      "name": "Hotel Tokyo",
+      "price": 170
+    },
+    {
+      "id": "10",
+      "destinationsId": "5",
+      "name": "Hotel Japan",
+      "price": 190
     }
   ]
 }
