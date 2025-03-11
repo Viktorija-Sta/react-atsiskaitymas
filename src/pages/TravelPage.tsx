@@ -1,4 +1,4 @@
-import TripList from "../components/Trip/TripList"
+import TripList from "../components/Trips/TripList"
 import { TravelPageContextProvider } from "./TravelPageContextProvider"
 
 

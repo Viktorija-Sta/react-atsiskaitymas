@@ -19,6 +19,8 @@ const TripList: React.FC = () => {
             </Link>
 
             <h2>Naujausi kelionių pasiūlymai</h2>
+            <Link to="/trip">
+            
             {trips.length > 0 ? (
                 <div className="trips">
                     {trips.map((trip) => (
@@ -28,6 +30,7 @@ const TripList: React.FC = () => {
             ) : (
                 <p>Atsiprašome, kelionių šiuo metu neturime</p>
             )}
+            </Link>
         </div>
     )
 }

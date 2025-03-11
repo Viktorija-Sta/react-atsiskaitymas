@@ -7,6 +7,8 @@ interface TravelPageContextType extends TravelPageState {
     removeItem: (id: string) => Promise<void>
     updateItem: (item: TravelItem) => Promise<void>
     fetchDestinations: () => Promise<void>
+    travelList: { id: string }[]
+    
 }
 
 const TravelPageContext = createContext<TravelPageContextType | undefined>(undefined)
@@ -103,6 +105,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         updateItem,
         fetchDestinations,
         ...travelPageState,
+        travelList: travelPageState.trips
     }
   
     return (
