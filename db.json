@@ -5,14 +5,27 @@
       "title": "Paryžius, Prancūzija",
       "description": "Romantiškas miestas su garsiais lankytinais objektais, tokiais kaip Eifelio bokštas ir Luvras.",
       "fullDescription": "Paryžius - vienas iš romantiškiausių miestų pasaulyje, kuris garsėja savo garsiais lankytinais objektais, tokiais kaip Eifelio bokštas, Luvras, Notr Damo katedra, Triumfo arka, Montmartro kalnas, Sena miesto gatvės ir aikštės bei daugybė kitų. Tai vienas iš tų miestų, kuriuos reikia pamatyti bent kartą gyvenime. Paryžiuje galima mėgautis prancūzišku maistu, vynu, ledais, kava, aukščiausios kokybės gelatu, o vakarais - pasivaikščioti po miesto gatves, kuriomis sklando romantiška atmosfera.",
-      "price": 899,
-      "duration": "5 dienos",
+      "price": "1000",
+      "duration": "10",
       "image": "https://www.makalius.lt/wp-content/travel-destination-images/29029-travel-destination/paryzius-790x363.jpeg",
       "category": "Europa",
       "gallery": [
         "https://www.makalius.lt/wp-content/travel-destination-images/29029-travel-destination/paryzius-790x363.jpeg",
-        "https://www.makalius.lt/wp-content/travel-destination-images/29029-travel-destination/paryzius-790x363.jpeg",
         "https://www.makalius.lt/wp-content/travel-destination-images/29029-travel-destination/paryzius-790x363.jpeg"
+      ],
+      "hotels": [
+        {
+          "id": "1",
+          "destinationsId": "1",
+          "name": "Hotel Eiffel",
+          "price": 120
+        },
+        {
+          "id": "2",
+          "destinationsId": "1",
+          "name": "Hotel Louvre",
+          "price": 100
+        }
       ]
     },
     {
@@ -34,7 +47,7 @@
       "id": "3",
       "title": "Niujorkas, JAV",
       "description": "Didžiausias JAV miestas, kuriame galima pamatyti laisvės statulą ir pasivaikščioti Central Park.",
-      "fullDescription": " Niujorkas - didžiausias JAV miestas, kuriame galima pamatyti laisvės statulą, pasivaikščioti Central Park, aplankyti Niujorko muziejų, Niujorko operą, Niujorko prekybos centrą, Niujorko botanikos sodą, Niujorko zoologijos sodą, Niujorko planetariumą, Niujorko meno muziejų, Niujorko istorijos muziejų, Niujorko šiuolaikinio meno muziejų, Niujorko kinematografijos muziejų, Niujorko dizaino muziejų, Niujorko fotografijos muziejų, Niujorko vaikų muziejų, Niujorko mokslinio mokymo muziejų, Niujorko technologijų muziejų, Niujorko žydų muziejų, Niujorko karo muziejų, Niujorko karo oro laivyno muziejų, Niujorko karo jūrų muziejų, Niujorko karo laivų muziejų, Niujorko karo aviacijos muziejų, Niujorko karo istorijos muziejų, Niujorko karo laivų muziejų, Niujorko karo oro laivyno muziejų, Niujorko karo jūrų muziejų, Niujorko karo laivų muziejų, Niujorko karo aviacijos muziejų, Niujorko karo istorijos muziejų, Niujorko karo laivų muziejų, Niujorko karo oro laivyno muziejų, Niujorko karo jūrų muziejų ir daugybė kitų. Niujorke taip pat galima mėgautis amerikietišku maistu, vynu, ledais, kava, aukščiausios kokybės gelatu, o vakarais - pasivaikščioti po miesto gatves, kuriomis sklando romantiška atmosfera." ,
+      "fullDescription": " Niujorkas - didžiausias JAV miestas, kuriame galima pamatyti laisvės statulą, pasivaikščioti Central Park, aplankyti Niujorko muziejų, Niujorko operą, Niujorko prekybos centrą, Niujorko botanikos sodą, Niujorko zoologijos sodą, Niujorko planetariumą, Niujorko meno muziejų, Niujorko istorijos muziejų, Niujorko šiuolaikinio meno muziejų, Niujorko kinematografijos muziejų, Niujorko dizaino muziejų, Niujorko fotografijos muziejų, Niujorko vaikų muziejų, Niujorko mokslinio mokymo muziejų, Niujorko technologijų muziejų, Niujorko žydų muziejų, Niujorko karo muziejų, Niujorko karo oro laivyno muziejų, Niujorko karo jūrų muziejų, Niujorko karo laivų muziejų, Niujorko karo aviacijos muziejų, Niujorko karo istorijos muziejų, Niujorko karo laivų muziejų, Niujorko karo oro laivyno muziejų, Niujorko karo jūrų muziejų, Niujorko karo laivų muziejų, Niujorko karo aviacijos muziejų, Niujorko karo istorijos muziejų, Niujorko karo laivų muziejų, Niujorko karo oro laivyno muziejų, Niujorko karo jūrų muziejų ir daugybė kitų. Niujorke taip pat galima mėgautis amerikietišku maistu, vynu, ledais, kava, aukščiausios kokybės gelatu, o vakarais - pasivaikščioti po miesto gatves, kuriomis sklando romantiška atmosfera.",
       "price": 1299,
       "duration": "7 dienos",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAti0sKNO6BKvubgMZ7_nngLKg8OItWLEq-Q&s",

@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
 
 interface Trip {
@@ -71,14 +71,12 @@ if (!trip) {
     return <p>Kraunama...</p>
 }
 
-const tripDuration = parseInt(trip.duration, 10) || 1;
+const tripDuration = isNaN(Number(trip.duration)) ? 1 : Number(trip.duration)
+const selectedHotelObj = hotels.find((hotel) => hotel.id === selectedHotel)
+const hotelPricePerNight = selectedHotelObj ? Number(selectedHotelObj.price) : 0
+const totalHotelCost = selectedHotelObj ? hotelPricePerNight * tripDuration : 0
+const totalTripCost = (Number(trip.price) || 0) + (Number(totalHotelCost) || 0)
 
-const selectedHotelObj = hotels.find((hotel) => hotel.name === selectedHotel);
-const hotelPricePerNight = selectedHotelObj ? selectedHotelObj.price : 0;
-
-const totalHotelCost = hotelPricePerNight * tripDuration;
-
-const totalTripCost = trip.price + totalHotelCost;
 
 const submitHandler = () => {
     setIsPopupOpen(true)
@@ -91,6 +89,9 @@ const closePopup = () => {
 
 return (
     <div className="trip-info">
+        <Link to={`/trip/edit/${trip.id}`}>
+            <button>Redaguoti</button>
+        </Link>
         <h1>{trip.title}</h1>
         <p>{trip.description}</p>
         <p>{trip.fullDescription}</p>
@@ -109,17 +110,11 @@ return (
             <h2>Pasirinkite viešbutį</h2>
             <select value={selectedHotel} onChange={(e) => setSelectedHotel(e.target.value)}>
                 <option value="">Pasirinkite viešbutį</option>
-                {hotels.length > 0 ? (
-                    hotels.map((hotel) => (
-                        <option key={hotel.id} value={hotel.name}>
-                            {hotel.name} - {hotel.price}€/naktis
-                        </option>
-                    ))
-                ) : (
-                    <option value="" disabled>
-                        Viešbučių nėra
+                {hotels.map((hotel) => (
+                    <option key={hotel.id} value={hotel.id}>
+                        {hotel.name} - {hotel.price}€/naktis
                     </option>
-                )}
+                ))}
             </select>
         </div>
 
@@ -135,14 +130,16 @@ return (
         </div>
 
         <div className="total-price">
-                <h2>Galutinė kaina:</h2>
-                <p>
-                    {selectedHotel
-                        ? `Kelionė: ${trip.price}€ + Viešbutis: ${totalHotelCost}€ (${hotelPricePerNight}€/naktis × ${tripDuration} n.)`
-                        : "Pasirinkite viešbutį, kad matytumėte kainą"}
-                </p>
-                <p><strong>Viso: {selectedHotel ? totalTripCost + "€" : "---"}</strong></p>
-            </div>
+            <h2>Galutinė kaina:</h2>
+            <p>
+                {selectedHotelObj
+                    ? `Kelionė: ${trip.price}€ + Viešbutis: ${totalHotelCost}€ (${hotelPricePerNight}€/naktis × ${tripDuration} n.)`
+                    : "Pasirinkite viešbutį, kad matytumėte kainą"}
+            </p>
+
+            <p><strong>Viso: {selectedHotel ? totalTripCost.toLocaleString() + "€" : "---"}</strong></p>
+
+        </div>
 
             <button type="submit" onClick={submitHandler} disabled={!selectedHotel}>
                 Siųsti užklausą

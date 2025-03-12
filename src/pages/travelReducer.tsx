@@ -5,6 +5,7 @@ export interface TravelItem {
     price: number
     image: string
     category: string
+    duration: string
 }
 
 export interface TravelPageState {

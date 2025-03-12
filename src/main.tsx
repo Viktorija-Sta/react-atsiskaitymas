@@ -6,6 +6,7 @@ import { TravelPageContextProvider } from './pages/TravelPageContextProvider'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import FormPage from './components/FormPage/FormPage'
 import TripInformation from './components/TripInformation/TripInformation'
+import EditTripInformation from './components/EditTripInformation/EditTripInformation'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/' element={<TravelPage />} />
           <Route path='create' element={<FormPage />} />
           <Route path='/trip/:id' element={<TripInformation/>} />
+          <Route path="/trip/edit/:id" element={<EditTripInformation />} />
         </Routes>
       </BrowserRouter>
     </TravelPageContextProvider>
