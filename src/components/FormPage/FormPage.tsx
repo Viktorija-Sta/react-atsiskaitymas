@@ -2,6 +2,7 @@ import { useNavigate } from "react-router"
 import { useTravelPageContext } from "../../pages/TravelPageContextProvider"
 
 
+
 const FormPage: React.FC = () => {
     const { addItem, trips } = useTravelPageContext()
     const navigate = useNavigate()
@@ -17,6 +18,7 @@ const FormPage: React.FC = () => {
         const title = formData.get('title') as string
         const description = formData.get('description') as string
         const price = Number(formData.get('price'))
+        const duration = formData.get('duration') as string
         const image = formData.get('image') as string
         const category = formData.get('category') as string
 
@@ -27,6 +29,7 @@ const FormPage: React.FC = () => {
             price,
             image,
             category,
+            duration
         }
 
         const existingTrip = trips.find((trip) => trip.id === newTrip.id)
@@ -47,8 +50,11 @@ const FormPage: React.FC = () => {
             <form onSubmit={handleSubmit}>
                 <input type="text" name="title" placeholder="Pavadinimas" required />
                 <input type="text" name="description" placeholder="Aprašymas" required />
-                <input type="number" name="price" placeholder="Kaina" required />
+                <input type="text" name="duration" placeholder="Trukmė" required />
+                <button type="submit">Pridėti naują kelionę</button>
                 <input type="text" name="image" placeholder="Nuotrauka" required />
+                <button type="submit">Pridėti naują kelionę</button>
+                <button type="submit">Pridėti naują kelionę</button>
                 <input type="text" name="category" placeholder="Kategorija" required />
                 <button type="submit">Pridėti naują kelionę</button>
             </form>

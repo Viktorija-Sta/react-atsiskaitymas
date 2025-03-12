@@ -7,7 +7,6 @@ interface TravelPageContextType extends TravelPageState {
     removeItem: (id: string) => Promise<void>
     updateItem: (item: TravelItem) => Promise<void>
     fetchDestinations: () => Promise<void>
-    travelList: { id: string }[]
     
 }
 
@@ -24,16 +23,14 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
     const isFirstLoad = useRef(true)
 
     const fetchDestinations = useCallback(async () => {
-        try{
+        try {
             const res = await fetch("http://localhost:3000/destinations")
-            if (res.ok) {
-                const data: TravelItem[] = await res.json()
-                dispatch({ type: TravelPageActionType.SET_DESTINATIONS, payload: data })
-            } else {
-                console.log('Failed to fetch destinations.')
-            }
+            if (!res.ok) throw new Error("Failed to fetch destinations")
+            
+            const data: TravelItem[] = await res.json()
+            dispatch({ type: TravelPageActionType.SET_DESTINATIONS, payload: data })
         } catch (error) {
-            console.log('Error fetching destinations:', error)
+            console.error("Error fetching destinations:", error)
         }
     }, [])
     
@@ -41,34 +38,27 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         try {
             const res = await fetch("http://localhost:3000/destinations", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(item),
-            });
-            if (res.ok) {
-                const newItem = await res.json();
-                dispatch({ type: TravelPageActionType.ADD_DESTINATION, payload: newItem });
-            } else {
-                console.log('Failed to add destination')
-            }
+            })
+            if (!res.ok) throw new Error("Failed to add destination")
+
+            const newItem = await res.json()
+            dispatch({ type: TravelPageActionType.ADD_DESTINATION, payload: newItem })
         } catch (error) {
-            console.log('Error adding destination:', error)
+            console.error("Error adding destination:", error)
         }
     }, [])
 
+
     const removeItem = useCallback(async (id: string) => {
         try {
-            const res = await fetch(`http://localhost:3000/destinations/${id}`, {
-                method: "DELETE",
-            });
-            if (res.ok) {
-                dispatch({ type: TravelPageActionType.REMOVE_DESTINATION, payload: id });
-            } else {
-                console.log('Failed to remove destination')
-            }
+            const res = await fetch(`http://localhost:3000/destinations/${id}`, { method: "DELETE" })
+            if (!res.ok) throw new Error("Failed to remove destination")
+
+            dispatch({ type: TravelPageActionType.REMOVE_DESTINATION, payload: id })
         } catch (error) {
-            console.log('Error removing destination:', error)
+            console.error("Error removing destination:", error)
         }
     }, [])
 
@@ -76,18 +66,14 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         try {
             const res = await fetch(`http://localhost:3000/destinations/${item.id}`, {
                 method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(item),
-            });
-            if (res.ok) {
-                dispatch({ type: TravelPageActionType.UPDATE_DESTINATION, payload: item });
-            } else {
-                console.log('Failed to update destination')
-            }
+            })
+            if (!res.ok) throw new Error("Failed to update destination")
+
+            dispatch({ type: TravelPageActionType.UPDATE_DESTINATION, payload: item })
         } catch (error) {
-            console.log('Error updating destination:', error)
+            console.error("Error updating destination:", error)
         }
     }, [])
 
@@ -95,9 +81,9 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         if (isFirstLoad.current) {
             isFirstLoad.current = false;
             console.log("Loading destinations...");
-            fetchDestinations(); // Fetch destinations on the first load
+            fetchDestinations()
         }
-    }, [fetchDestinations]);
+    }, [fetchDestinations])
             
     const ctxValue: TravelPageContextType = {
         addItem,
@@ -105,7 +91,6 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         updateItem,
         fetchDestinations,
         ...travelPageState,
-        travelList: travelPageState.trips
     }
   
     return (
