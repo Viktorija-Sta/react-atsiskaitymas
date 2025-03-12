@@ -43,6 +43,7 @@ const FormPage: React.FC = () => {
             duration: formData.get("duration") as string,
             fullDescription: formData.get("fullDescription") as string,
             gallery: galleryUrls,
+            agency: "Kelionių agentūra",
         }
 
         const newHotel: HotelItem = {

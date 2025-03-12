@@ -18,6 +18,13 @@ interface Hotel {
     price: number
 }
 
+// interface Agency {
+//     id: string
+//     name: string
+//     location: string
+//     link: string
+// }
+
 const TripInformation: React.FC = () => {
     const { id } = useParams<Record<string, string | undefined>>()
         console.log("Kelionės ID:", id)
@@ -33,38 +40,38 @@ const TripInformation: React.FC = () => {
     const [isPopupOpen, setIsPopupOpen] = useState(false)
 
     useEffect(() => {
-        if (!id) return;
+        if (!id) return
         
         const fetchTrip = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/destinations/${id}`);
-                if (!res.ok) throw new Error("Nepavyko gauti kelionės duomenų");
-                const data = await res.json();
-                setTrip(data);
+                const res = await fetch(`http://localhost:3000/destinations/${id}`)
+                if (!res.ok) throw new Error("Nepavyko gauti kelionės duomenų")
+                const data = await res.json()
+                setTrip(data)
             } catch (error) {
-                console.error("Klaida gaunant kelionę:", error);
+                console.error("Klaida gaunant kelionę:", error)
             }
-        };
+        }
     
         const fetchHotels = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/hotels?destinationsId=${id}`);
-                if (!res.ok) throw new Error("Nepavyko gauti viešbučių");
-                const data = await res.json();
-                setHotels(data);
+                const res = await fetch(`http://localhost:3000/hotels?destinationsId=${id}`)
+                if (!res.ok) throw new Error("Nepavyko gauti viešbučių")
+                const data = await res.json()
+                setHotels(data)
             } catch (error) {
-                console.error("Klaida gaunant viešbučius:", error);
+                console.error("Klaida gaunant viešbučius:", error)
             }
-        };
+        }
     
-        fetchTrip();
-        fetchHotels();
-    }, [id, setTrip, setHotels]); // ✅ Added dependencies
+        fetchTrip()
+        fetchHotels()
+    }, [id, setTrip, setHotels])
     
 
 
-    if (!trip) return <p>Kraunama...</p>;
-    if (!trip.title) return <p>Klaida: Kelionės duomenys nepasiekiami</p>;
+    if (!trip) return <p>Kraunama...</p>
+    if (!trip.title) return <p>Klaida: Kelionės duomenys nepasiekiami</p>
 
 const tripDuration = isNaN(Number(trip.duration)) ? 1 : Number(trip.duration)
 const selectedHotelObj = hotels.find((hotel) => hotel.id === selectedHotel)

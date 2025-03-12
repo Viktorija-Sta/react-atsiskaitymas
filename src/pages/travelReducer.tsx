@@ -7,7 +7,8 @@ export interface TravelItem {
     category: string
     duration: string
     fullDescription: string
-    gallery: string[]
+    gallery: string[], 
+    agency: string
 }
 
 export interface HotelItem {
