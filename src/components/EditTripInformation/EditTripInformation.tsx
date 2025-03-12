@@ -36,7 +36,7 @@ const EditTripInformation: React.FC = () => {
     
                 setEditedTrip({
                     ...tripData,
-                    hotels: hotelsData, // Pridedame gautus viešbučius
+                    hotels: hotelsData,
                     gallery: Array.isArray(tripData.gallery) ? tripData.gallery : [],
                 })
     

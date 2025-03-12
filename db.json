@@ -149,6 +149,24 @@
       "destinationsId": "5",
       "name": "Hotel Japan",
       "price": 190
+    },
+    {
+      "id": "gdf1735xc",
+      "destinationsId": "di5c2jr4g",
+      "name": "amberton",
+      "price": 23
+    },
+    {
+      "id": "9qopuolcu",
+      "destinationsId": "m7dnhxg5h",
+      "name": "amberton",
+      "price": 34
+    },
+    {
+      "id": "caqqu9ppo",
+      "destinationsId": "drqcvze2z",
+      "name": "amberton",
+      "price": 56
     }
   ]
 }

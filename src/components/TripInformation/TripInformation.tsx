@@ -33,43 +33,38 @@ const TripInformation: React.FC = () => {
     const [isPopupOpen, setIsPopupOpen] = useState(false)
 
     useEffect(() => {
-        if (!id) {
-            console.log("Kelionės ID nerastas!", id)
-            return
-        }
+        if (!id) return;
+        
+        const fetchTrip = async () => {
+            try {
+                const res = await fetch(`http://localhost:3000/destinations/${id}`);
+                if (!res.ok) throw new Error("Nepavyko gauti kelionės duomenų");
+                const data = await res.json();
+                setTrip(data);
+            } catch (error) {
+                console.error("Klaida gaunant kelionę:", error);
+            }
+        };
+    
+        const fetchHotels = async () => {
+            try {
+                const res = await fetch(`http://localhost:3000/hotels?destinationsId=${id}`);
+                if (!res.ok) throw new Error("Nepavyko gauti viešbučių");
+                const data = await res.json();
+                setHotels(data);
+            } catch (error) {
+                console.error("Klaida gaunant viešbučius:", error);
+            }
+        };
+    
+        fetchTrip();
+        fetchHotels();
+    }, [id, setTrip, setHotels]); // ✅ Added dependencies
+    
 
-        console.log("Gaunamas kelionės ID:", id)
-        fetch(`http://localhost:3000/destinations/${id}`)
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error("Nepavyko gauti kelionės duomenų")
-                }
-                return res.json()
-            })
-            .then((data) => {
-                console.log("Gauti kelionės duomenys:", data)
-                setTrip(data)
-            })
-            .catch((error) => console.error("Klaida gaunant kelionę:", error))
-            
 
-        fetch(`http://localhost:3000/hotels?destinationsId=${id}`)
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error("Nepavyko gauti viešbučių");
-                }
-                return res.json()
-            })
-            .then((data) => {
-                console.log("Gauti viešbučiai:", data)
-                setHotels(data)
-            })
-            .catch((error) => console.error("Klaida gaunant viešbučius:", error))
-}, [id])
-
-if (!trip) {
-    return <p>Kraunama...</p>
-}
+    if (!trip) return <p>Kraunama...</p>;
+    if (!trip.title) return <p>Klaida: Kelionės duomenys nepasiekiami</p>;
 
 const tripDuration = isNaN(Number(trip.duration)) ? 1 : Number(trip.duration)
 const selectedHotelObj = hotels.find((hotel) => hotel.id === selectedHotel)
@@ -101,10 +96,14 @@ return (
         </p>
 
         <div className="image-gallery">
-            {trip.gallery.map((img, index) => (
-                <img key={index} src={img} alt={`${trip.title} ${index + 1}`} />
-            ))}
-        </div>
+    {Array.isArray(trip.gallery) ? (
+        trip.gallery.map((img, index) => (
+            <img key={index} src={img} alt={`${trip.title} ${index + 1}`} />
+        ))
+    ) : (
+        <p>Galerijos nuotraukos nerastos.</p>
+    )}
+</div>
 
         <div className="hotel-selection">
             <h2>Pasirinkite viešbutį</h2>

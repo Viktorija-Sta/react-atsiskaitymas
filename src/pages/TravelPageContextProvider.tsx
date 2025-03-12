@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useReducer, useRef } from "react"
-import { initialState, TravelItem, TravelPageActionType, travelPageReducer, TravelPageState } from "./travelReducer"
+import { HotelItem, initialState, TravelItem, TravelPageActionType, travelPageReducer, TravelPageState } from "./travelReducer"
 
 
 interface TravelPageContextType extends TravelPageState {
@@ -7,7 +7,8 @@ interface TravelPageContextType extends TravelPageState {
     removeItem: (id: string) => Promise<void>
     updateItem: (item: TravelItem) => Promise<void>
     fetchDestinations: () => Promise<void>
-    
+    addHotel: (hotel: HotelItem) => Promise<void>
+
 }
 
 const TravelPageContext = createContext<TravelPageContextType | undefined>(undefined)
@@ -17,23 +18,32 @@ type TravelPageContextProviderProps = {
 }
 
 export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps> = ({ children }) => {
-    const [travelPageState, dispatch] = useReducer(travelPageReducer, initialState);
-    
-
+    const [travelPageState, dispatch] = useReducer(travelPageReducer, initialState)
     const isFirstLoad = useRef(true)
 
     const fetchDestinations = useCallback(async () => {
-        try {
-            const res = await fetch("http://localhost:3000/destinations")
-            if (!res.ok) throw new Error("Failed to fetch destinations")
-            
-            const data: TravelItem[] = await res.json()
-            dispatch({ type: TravelPageActionType.SET_DESTINATIONS, payload: data })
-        } catch (error) {
-            console.error("Error fetching destinations:", error)
+    try {
+        const [destinationsRes, hotelsRes] = await Promise.all([
+            fetch("http://localhost:3000/destinations"),
+            fetch("http://localhost:3000/hotels")
+        ]);
+
+        if (!destinationsRes.ok || !hotelsRes.ok) throw new Error("Failed to fetch data");
+
+        const destinations = await destinationsRes.json();
+        const hotels: HotelItem[] = await hotelsRes.json();
+
+        if (!Array.isArray(destinations) || !Array.isArray(hotels)) {
+            throw new Error("Invalid API response format");
         }
-    }, [])
-    
+
+        dispatch({ type: TravelPageActionType.SET_DESTINATIONS, payload: destinations });
+        dispatch({ type: TravelPageActionType.ADD_HOTELS, payload: hotels });
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+}, [])
+
     const addItem = useCallback(async (item: TravelItem) => {
         try {
             const res = await fetch("http://localhost:3000/destinations", {
@@ -50,17 +60,36 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         }
     }, [])
 
+    const addHotel = useCallback(async (hotel: HotelItem) => {
+        try {
+            const res = await fetch("http://localhost:3000/hotels", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(hotel),
+            })
+            if (!res.ok) throw new Error("Failed to add hotel")
+    
+            const newHotel = await res.json()
+            console.log("Adding hotel:", newHotel);
+            dispatch({ type: TravelPageActionType.ADD_HOTELS, payload: [newHotel] });
+            console.log("Updated hotels state:", travelPageState.hotels);
+        } catch (error) {
+            console.error("Error adding hotel:", error)
+        }
+    }, []);
+
 
     const removeItem = useCallback(async (id: string) => {
         try {
-            const res = await fetch(`http://localhost:3000/destinations/${id}`, { method: "DELETE" })
+            const res = await fetch(`http://localhost:3000/destinations/${id}`, { method: "DELETE" });
             if (!res.ok) throw new Error("Failed to remove destination")
-
+    
             dispatch({ type: TravelPageActionType.REMOVE_DESTINATION, payload: id })
         } catch (error) {
             console.error("Error removing destination:", error)
         }
     }, [])
+    
 
     const updateItem = useCallback(async (item: TravelItem) => {
         try {
@@ -80,7 +109,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
     useEffect(() => {
         if (isFirstLoad.current) {
             isFirstLoad.current = false;
-            console.log("Loading destinations...");
+            console.log("Loading destinations...")
             fetchDestinations()
         }
     }, [fetchDestinations])
@@ -90,6 +119,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         removeItem,
         updateItem,
         fetchDestinations,
+        addHotel,
         ...travelPageState,
     }
   
