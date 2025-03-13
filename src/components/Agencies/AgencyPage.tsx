@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { API_URL } from "../config";
 import { AgenciesItem, TravelItem } from "../../pages/travelReducer";
 import TripItem from "../Trips/TripItem";
@@ -54,6 +54,7 @@ const AgencyPage: React.FC = () => {
 
     return (
         <div className="agency-page">
+            <Link to="/agencies/edit">Redaguoti agentūrą</Link>
             {agency && (
                 <div className="agency-info">
                     <h2>"{agency.name}"</h2>

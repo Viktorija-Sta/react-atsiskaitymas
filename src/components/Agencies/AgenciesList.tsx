@@ -7,10 +7,13 @@ interface Agency {
     id: string
     name: string
     location: string
-    contacts: {
+    contacts: 
+    [
+        {
         email: string
         phone: string
-    }[]
+    }
+]
 }
 
 const AgenciesList: React.FC = () => {
@@ -66,6 +69,7 @@ const AgenciesList: React.FC = () => {
 
     return (
         <div className="agencies-list">
+            
             <h2>Visos</h2>
             {agencies.length > 0 ? (
                 <div className="agencies">
