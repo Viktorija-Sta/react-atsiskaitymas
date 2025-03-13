@@ -165,32 +165,57 @@
     {
       "id": "1",
       "name": "Makalius",
-      "location": "Lietuva",
-      "link": "https://www.makalius.lt/"
+      "location": "Lietuvoje",
+      "contacts": [
+        {
+          "email": "labas@makalius.lt",
+          "phone": "+370 639 96444"
+        }
+      ]
     },
     {
       "id": "2",
       "name": "Pelago",
-      "location": "Lietuva",
-      "link": "https://www.pelago.com/"
+      "location": "Lietuvoje",
+      "contacts":[
+        {
+          "email": "pelago@pelago.com",
+          "phone": "+44387293872837"
+        }
+      ]
     },
     {
       "id": "3",
       "name": "NatGeo",
       "location": "JAV",
-      "link": "https://www.nationalgeographic.com/"
+      "contacts":[
+        {
+          "email": "netgeo@netgeo.com",
+          "phone": "+38462873563857"
+        }
+      ]
     },
     {
       "id": "4",
       "name": "Interlux",
-      "location": "Latvija",
-      "link": "https://www.interluxtravel.lv/"
+      "location": "Latvijoje",
+      "contacts":[
+        {
+          "email": "interlux@interlux.com",
+          "phone": "+37623587232837"
+        }
+      ]
     },
     {
       "id": "5",
       "name": "Caz",
-      "location": "Latvija",
-      "link": "https://caz.interluxtravel.lv/"
+      "location": "Latvijoje",
+      "contacts":[
+        {
+          "email": "caz@caz.com",
+          "phone": "+78237598375298"
+        }
+      ]
     }
   ], 
   "destinationsAgencies": [

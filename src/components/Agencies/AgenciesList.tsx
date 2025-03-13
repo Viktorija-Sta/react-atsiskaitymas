@@ -7,11 +7,17 @@ interface Agency {
     id: string
     name: string
     location: string
-    link: string
+    contacts: [
+        {
+            email: string
+            phone: string
+        }
+    ]
 }
 
 const AgenciesList: React.FC = () => {
     const [agencies, setAgencies] = useState<Agency[]>([])
+    const [agencyTripCounts, setAgencyTripCounts] = useState<{ [key: string]: number }>({})
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     
@@ -22,18 +28,39 @@ const AgenciesList: React.FC = () => {
                 const res = await fetch(`${API_URL}/agencies`)
                 if (!res.ok) throw new Error("Nepavyko gauti agentūrų")
                 const data = await res.json()
+
                 setAgencies(data)
-
+                
             } catch (error) {
-               setError("Nepavyko užkrauti agentūrų")
-               console.error("Klaida gaunant agentūras:", error)
-
-            } finally {
-                setLoading(false)
+                setError("Nepavyko užkrauti agentūrų")
+                console.error("Klaida gaunant agentūras:", error)
             }
         }
 
-        fetchAgencies()
+        const fetchDestinationsAgencies = async () => {
+            try {
+                const res = await fetch(`${API_URL}/destinationsAgencies`)
+                if (!res.ok) throw new Error("Nepavyko gauti kelionių duomenų")
+                const data = await res.json()
+
+                const counts: { [key: string]: number } = {}
+                data.forEach((item: { agencyId: string }) => {
+                    counts[item.agencyId] = (counts[item.agencyId] || 0) + 1
+                })
+
+                setAgencyTripCounts(counts)
+            } catch (error) {
+                console.error("Klaida gaunant kelionių duomenis:", error)
+            }
+        }
+
+        const fetchData = async () => {
+            setLoading(true)
+            await Promise.all([fetchAgencies(), fetchDestinationsAgencies()])
+            setLoading(false)
+        }
+
+        fetchData()
     }, [])
 
     if(loading) return <p>Kraunama...</p>
@@ -49,6 +76,7 @@ const AgenciesList: React.FC = () => {
                             <Link to={`/agency/${agency.id}`}>
                                 <AgencyItem data={agency} />
                             </Link>
+                            <p>Kelionių paketų: {agencyTripCounts[agency.id] || 0}</p>
                         </div>
                     ))}
                 </div>

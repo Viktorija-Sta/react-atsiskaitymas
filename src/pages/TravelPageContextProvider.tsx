@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useReducer, useRef } from "react"
-import { HotelItem, initialState, TravelItem, TravelPageActionType, travelPageReducer, TravelPageState } from "./travelReducer"
+import { AgenciesItem, HotelItem, initialState, TravelItem, TravelPageActionType, travelPageReducer, TravelPageState } from "./travelReducer"
 import { API_URL } from "../components/config"
 
 
@@ -9,6 +9,7 @@ interface TravelPageContextType extends TravelPageState {
     updateItem: (item: TravelItem) => Promise<void>
     fetchDestinations: () => Promise<void>
     addHotel: (hotel: HotelItem) => Promise<void>
+    addAgency: (agency: AgenciesItem) => Promise<void>
 
 }
 
@@ -78,6 +79,24 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
             console.error("Error adding hotel:", error)
         }
     }, [])
+    
+    const addAgency = useCallback(async (agency: AgenciesItem) => {
+        try {
+            const res = await fetch(`${API_URL}/agencies`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(agency),
+            })
+            if (!res.ok) throw new Error("Failed to add agency")
+    
+            const newAgency = await res.json()
+            console.log("Adding agency:", newAgency)
+            dispatch({ type: TravelPageActionType.ADD_HOTELS, payload: [newAgency] })
+            console.log("Updated hotels state:", travelPageState.agencies)
+        } catch (error) {
+            console.error("Error adding hotel:", error)
+        }
+    }, [])
 
 
     const removeItem = useCallback(async (id: string) => {
@@ -121,6 +140,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         updateItem,
         fetchDestinations,
         addHotel,
+        addAgency,
         ...travelPageState,
     }
   

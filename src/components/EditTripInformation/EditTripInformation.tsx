@@ -12,16 +12,17 @@ const EditTripInformation: React.FC = () => {
     const navigate = useNavigate()
 
     const [editedTrip, setEditedTrip] = useState({ 
-        title: "", 
-        description: "", 
-        fullDescription: "", 
-        price: "", 
-        duration: "", 
+        title: '', 
+        description: '', 
+        fullDescription: '', 
+        price: '', 
+        duration: '', 
         hotels: [] as Hotel[],
         gallery: [] as string[], 
+        agencyId: ''
     })
 
-    const [newHotel, setNewHotel] = useState<Hotel>({ name: "", price: "" })
+    const [newHotel, setNewHotel] = useState<Hotel>({ name: '', price: '' })
    
     useEffect(() => {
         const fetchTripData = async () => {

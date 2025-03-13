@@ -15,33 +15,44 @@ const AgencyPage: React.FC = () => {
         const fetchAgencyData = async () => {
             try {
                 const agencyRes = await fetch(`${API_URL}/agencies`)
-                if(!agencyRes.ok) throw new Error ("Nepavyko gauti agentūros duomenų")
+                if (!agencyRes.ok) throw new Error("Nepavyko gauti agentūros duomenų")
                 const agenciesData: AgenciesItem[] = await agencyRes.json()
                 const foundAgency = agenciesData.find((a) => a.id === id) || null
                 setAgency(foundAgency)
-
+        
                 const tripsRes = await fetch(`${API_URL}/destinations`)
                 if (!tripsRes.ok) throw new Error("Nepavyko gauti agentūros kelionių")
                 const tripsData = await tripsRes.json()
-
+        
+                console.log("tripsData:", tripsData)
+        
+                if (!Array.isArray(tripsData)) {
+                    throw new Error("Blogas tripsData formatas")
+                }
+        
                 const destinationsAgenciesRes = await fetch(`${API_URL}/destinationsAgencies`)
                 if (!destinationsAgenciesRes.ok) throw new Error("Nepavyko gauti agentūrų kelionių sąrašo")
                 const destinationsAgenciesData = await destinationsAgenciesRes.json()
-
-                const agencyDestinations = destinationsAgenciesData?.destinationsAgencies 
-                    ?.filter((da: { agencyId: string }) => da.agencyId === id)
-                    ?.map((da: { destinationId: string }) => da.destinationId) || []
-
-                const filteredTrips = tripsData.destinations.filter(
+        
+                if (!Array.isArray(destinationsAgenciesData)) {
+                    throw new Error("Blogas destinationsAgenciesData formatas")
+                }
+        
+                const agencyDestinations = destinationsAgenciesData
+                    .filter((d: { agencyId: string }) => d.agencyId === id)
+                    .map((d: { destinationId: string }) => d.destinationId)
+        
+                console.log("agencyDestinations:", agencyDestinations)
+        
+                const filteredTrips = tripsData.filter(
                     (trip: TravelItem) => agencyDestinations.includes(trip.id)
                 )
-
+        
                 setTrips(filteredTrips)
-
+        
             } catch (error) {
                 setError("Įvyko klaida")
                 console.error(error)
-
             } finally {
                 setLoading(false)
             }
@@ -56,9 +67,12 @@ const AgencyPage: React.FC = () => {
          <div className="agency-page">
             {agency && (
                 <div className="agency-info">
-                    <h2>{agency.name}</h2>
-                    <p>{agency.location}</p>
-                    {agency.link && <a href={agency.link} target="_blank" rel="noreferrer">Oficialus puslapis</a>}
+                    <h2>"{agency.name}"</h2>
+                        <h4>Kontaktai</h4>
+                    <ul>
+                        <li>{agency.contacts[0].email}</li>
+                        <li>{agency.contacts[0].phone}</li>
+                    </ul>
                 </div>
             )}
 

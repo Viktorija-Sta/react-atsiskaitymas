@@ -5,18 +5,11 @@ interface AgencyItemProps {
 }
 
 const AgencyItem: React.FC<AgencyItemProps> = ({  data }) => {
-    const { name, location, link } = data
+    const { name, location } = data
     return (
         <div className="agency-item">
-            <h3>{name}</h3>
-            <p>{location}</p>
-            {link ? (
-                <a href={link} target="_blank" rel="noreferrer">
-                    {link}
-                </a>
-            ) : (
-                <p>Nuorodos nėra</p>
-            )}   
+            <h3>"{name}"</h3>
+            <p>Įkurta: {location}</p>
         </div>
     )
 }

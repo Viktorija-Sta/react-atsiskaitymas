@@ -21,7 +21,7 @@ const TripList: React.FC = () => {
             </Link>
 
             <Link to='/agencies'>
-                <button>Kelionių agentūros</button>
+                <button>Kelionių organizatoriai</button>
             </Link>
 
             <h2>Naujausi kelionių pasiūlymai</h2>

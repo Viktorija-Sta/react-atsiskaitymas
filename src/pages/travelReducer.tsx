@@ -22,12 +22,18 @@ export interface AgenciesItem {
     id: string
     name: string
     location: string
-    link?: string
+    contacts:[
+        {
+            email: string
+            phone: string
+        }
+    ]
 }
 
 export interface TravelPageState {
     trips: TravelItem[]
     hotels: HotelItem[] 
+    agencies: AgenciesItem[]
 }
 
 export enum TravelPageActionType {
@@ -36,6 +42,7 @@ export enum TravelPageActionType {
     UPDATE_DESTINATION = 'updateDestination',
     SET_DESTINATIONS = 'setDestinations',
     ADD_HOTELS = 'addHotel',
+    ADD_AGENCY= 'addAgency'
 }
 
 export type TravelPageAction = 
@@ -43,12 +50,14 @@ export type TravelPageAction =
     | { type: TravelPageActionType.REMOVE_DESTINATION, payload: string }
     | { type: TravelPageActionType.UPDATE_DESTINATION, payload: TravelItem }
     | { type: TravelPageActionType.SET_DESTINATIONS, payload: TravelItem[] }
-    | { type: TravelPageActionType.ADD_HOTELS; payload: HotelItem[] }
+    | { type: TravelPageActionType.ADD_HOTELS, payload: HotelItem[] }
+    | {type: TravelPageActionType.ADD_AGENCY, payload: AgenciesItem[]}
 
 
 export const initialState: TravelPageState = {
     trips: [],
-    hotels: []
+    hotels: [],
+    agencies: [],
 }
 
 export const travelPageReducer = (state: TravelPageState, action: TravelPageAction): TravelPageState => {
@@ -58,11 +67,19 @@ export const travelPageReducer = (state: TravelPageState, action: TravelPageActi
                 ...state,
                 trips: [...state.trips, action.payload]
             }
-            case TravelPageActionType.ADD_HOTELS:
-                return {
-                    ...state,
-                    hotels: [...state.hotels, ...action.payload],
-                }
+
+        case TravelPageActionType.ADD_HOTELS:
+            return {
+                ...state,
+                hotels: [...state.hotels, ...action.payload],
+            }
+
+        case TravelPageActionType.ADD_AGENCY:
+            return {
+                 ...state,
+                agencies: [...state.agencies, ...action.payload],
+            }
+
         case TravelPageActionType.REMOVE_DESTINATION:
             return {
                 ...state,
@@ -70,6 +87,7 @@ export const travelPageReducer = (state: TravelPageState, action: TravelPageActi
                 hotels: state.hotels.filter(hotel => hotel.destinationsId !== action.payload) 
           
             }
+
         case TravelPageActionType.UPDATE_DESTINATION:
             return {
                 ...state,
@@ -82,6 +100,7 @@ export const travelPageReducer = (state: TravelPageState, action: TravelPageActi
                 ...state,
                 trips: action.payload,
             }
+            
         default:
             return state
     }
