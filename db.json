@@ -83,81 +83,63 @@
   "hotels": [
     {
       "id": "1",
-      "destinationId": "1",
+      "destinationsId": "1",
       "name": "Hotel Eiffel",
       "price": 120
     },
     {
       "id": "2",
-      "destinationId": "1",
+      "destinationsId": "1",
       "name": "Hotel Louvre",
       "price": 100
     },
     {
       "id": "3",
-      "destinationId": "2",
+      "destinationsId": "2",
       "name": "Hotel Bali",
       "price": 150
     },
     {
       "id": "4",
-      "destinationId": "2",
+      "destinationsId": "2",
       "name": "Hotel Paradise",
       "price": 200
     },
     {
       "id": "5",
-      "destinationId": "3",
+      "destinationsId": "3",
       "name": "Hotel New York",
       "price": 180
     },
     {
       "id": "6",
-      "destinationId": "3",
+      "destinationsId": "3",
       "name": "Hotel Manhattan",
       "price": 160
     },
     {
       "id": "7",
-      "destinationId": "4",
+      "destinationsId": "4",
       "name": "Hotel Rome",
       "price": 130
     },
     {
       "id": "8",
-      "destinationId": "4",
+      "destinationsId": "4",
       "name": "Hotel Colosseum",
       "price": 110
     },
     {
       "id": "9",
-      "destinationId": "5",
+      "destinationsId": "5",
       "name": "Hotel Tokyo",
       "price": 170
     },
     {
       "id": "10",
-      "destinationId": "5",
+      "destinationsId": "5",
       "name": "Hotel Japan",
       "price": 190
-    },
-    {
-      "id": "1v4h1nvzd",
-      "destinationsId": "oov4b1ud4",
-      "name": "eriii",
-      "price": 180
-    },
-    {
-      "id": "szh6o5pvf",
-      "destinationsId": "ml1uirbm0",
-      "name": "sffs",
-      "price": 34
-    },
-    {
-      "id": "4ljoyku81",
-      "destinationsId": "ueh7ba22i",
-      "name": "zdb sx",
-      "price": 34
     }
   ],
   "agencies": [

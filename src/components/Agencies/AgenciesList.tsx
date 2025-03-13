@@ -7,12 +7,10 @@ interface Agency {
     id: string
     name: string
     location: string
-    contacts: [
-        {
-            email: string
-            phone: string
-        }
-    ]
+    contacts: {
+        email: string
+        phone: string
+    }[]
 }
 
 const AgenciesList: React.FC = () => {

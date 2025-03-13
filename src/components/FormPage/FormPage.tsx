@@ -26,10 +26,11 @@ const FormPage: React.FC = () => {
         phone: '',
     })
 
-    const generateUniqueId = (): string => Math.random().toString(36).substr(2, 9)
+    const generateUniqueId = (): string => Math.random().toString(36).slice(2, 11)
 
     const agencyChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setAgency({ ...agency, [e.target.name]: e.target.value })
+        const { name, value } = e.target
+        setAgency((prevAgency) => ({ ...prevAgency, [name]: value }))
     }
 
     const submitHandler = async (e: React.FormEvent) => {
@@ -56,6 +57,7 @@ const FormPage: React.FC = () => {
                     phone: agency.phone,
                 }
             ]
+            
         }
         const newTrip: TravelItem = {
             id: tripId,
@@ -77,9 +79,9 @@ const FormPage: React.FC = () => {
             price: Number(hotelPrice),
         }
 
-        await addItem(newTrip)
-        await addHotel(newHotel)
-        await addAgency(newAgency)
+         addItem(newTrip)
+         addHotel(newHotel)
+         addAgency(newAgency)
 
         navigate("/")
     }
@@ -90,12 +92,19 @@ const FormPage: React.FC = () => {
             <form onSubmit={submitHandler}>
                 <input type="text" placeholder="Miestas, Šalis" value={title} onChange={(e) => setTitle(e.target.value)} required />
                 <input type="text" placeholder="Aprašymas" value={description} onChange={(e) => setDescription(e.target.value)} required />
-                <input type="text" placeholder="Trukmė(d. dienos)" value={duration} onChange={(e) => setDuration(e.target.value)} required />
+                <input type="number" placeholder="Trukmė (dienomis)" value={duration} onChange={(e) => setDuration(e.target.value)} required />
                 <textarea placeholder="Platesnė informacija" value={fullDescription} onChange={(e) => setFullDescription(e.target.value)} required />
                 <input type="text" placeholder="Titulinė nuotrauka" value={image} onChange={(e) => setImage(e.target.value)} required />
                 <label>Galerijos nuotraukos (nuorodos, atskirkite kableliais)</label>
                 <textarea value={galleryLinks} onChange={(e) => setGalleryLinks(e.target.value)} placeholder="Įveskite nuorodas, atskirtas kableliais" />
-                <input type="text" placeholder="Kategorija" value={category} onChange={(e) => setCategory(e.target.value)} required />
+                <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+                    <option value="">Pasirinkite kategoriją</option>
+                    <option value="Azija">Azija</option>
+                    <option value="Afrika">Afrika</option>
+                    <option value="Europa">Europa</option>
+                    <option value="JAV">JAV</option>
+                    <option value="Kita">Kita</option>
+                </select>
                 <input type="number" placeholder="Kaina" value={price} onChange={(e) => setPrice(e.target.value)} required />
 
                 <h3>Kelionių organizatorius</h3>

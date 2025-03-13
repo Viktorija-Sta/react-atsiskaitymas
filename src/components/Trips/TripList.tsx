@@ -17,13 +17,15 @@ const TripList: React.FC = () => {
 
     return (
         <div className="trip-list">
-            <Link to="create/">
-                <button>Pridėti naują kelionę</button>
-            </Link>
+            <div className="actions">
+                <Link to="create/">
+                    <button>Pridėti naują kelionę</button>
+                </Link>
 
-            <Link to='/agencies'>
-                <button>Kelionių organizatoriai</button>
-            </Link>
+                <Link to="/agencies">
+                    <button>Kelionių organizatoriai</button>
+                </Link>
+            </div>
 
             <h2>Naujausi kelionių pasiūlymai</h2>
             

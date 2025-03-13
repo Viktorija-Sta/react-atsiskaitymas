@@ -8,7 +8,7 @@ interface TripItemProps {
 
 const TripItem: React.FC<TripItemProps> = ({ data }) => {
     const { removeItem, agencies } = useTravelPageContext();
-    const { id, title, description, price, image, agencyId } = data; // ✅ Pakeistas agency į agencyId
+    const { id, title, description, price, image, agencyId } = data
 
     const [isDeleting, setIsDeleting] = useState(false);
 
@@ -19,7 +19,7 @@ const TripItem: React.FC<TripItemProps> = ({ data }) => {
         return <p>Kraunama kelionės informacija...</p>;
     }
 
-    const agencyData = agencies.find((agencyItem) => agencyItem.id === agencyId); // ✅ Teisingas ID tikrinimas
+    const agencyData = agencyId ? agencies.find((agencyItem) => agencyItem.id === agencyId) : null;
 
     console.log("Rasta agentūra:", agencyData);
 
@@ -31,13 +31,15 @@ const TripItem: React.FC<TripItemProps> = ({ data }) => {
         setIsDeleting(true);
 
         try {
-            await removeItem(id);
+            await removeItem(id)
+
         } catch (error) {
-            console.error("Klaida šalinant kelionę:", error);
+            console.error("Klaida šalinant kelionę:", error)
+
         } finally {
-            setIsDeleting(false);
+            setIsDeleting(false)
         }
-    };
+    }
 
     return (
         <div className="trip-item">
@@ -51,11 +53,15 @@ const TripItem: React.FC<TripItemProps> = ({ data }) => {
                 <p>Organizatorius: Nežinomas</p>
             )}
             
-            <button onClick={deleteHandler} disabled={isDeleting}>
-                {isDeleting ? "Šalinama" : "Šalinti"}
+            <button 
+                onClick={deleteHandler} 
+                disabled={isDeleting} 
+                className={isDeleting ? "disabled-button" : ""}
+            >
+                {isDeleting ? "Šalinama..." : "Šalinti"}
             </button>
         </div>
-    );
-};
+    )
+}
 
-export default TripItem;
+export default TripItem

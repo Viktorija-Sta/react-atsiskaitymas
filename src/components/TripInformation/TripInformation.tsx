@@ -20,8 +20,8 @@ interface Hotel {
 }
 
 const TripInformation: React.FC = () => {
-    const { id } = useParams<Record<string, string | undefined>>()
-        console.log("Kelionės ID:", id)
+    const { id } = useParams<{ id: string }>()
+    console.log("Kelionės ID:", id)
 
     const [trip, setTrip] = useState<Trip | null>(null)
     const [hotels, setHotels] = useState<Hotel[]>([])
@@ -49,7 +49,7 @@ const TripInformation: React.FC = () => {
     
         const fetchHotels = async () => {
             try {
-                const res = await fetch(`${API_URL}/hotels?destinationId=${id}`)
+                const res = await fetch(`${API_URL}/hotels?destinationsId=${id}`)
                 if (!res.ok) throw new Error("Nepavyko gauti viešbučių")
                 const data = await res.json()
                 setHotels(data)
@@ -67,7 +67,7 @@ const TripInformation: React.FC = () => {
     if (!trip) return <p>Kraunama...</p>
     if (!trip.title) return <p>Klaida: Kelionės duomenys nepasiekiami</p>
 
-    const tripDuration = parseInt(trip.duration, 10) || 1;
+    const tripDuration = Number(trip.duration.match(/\d+/)?.[0]) || 1
     const selectedHotelObj = hotels.find((hotel) => hotel.id === selectedHotel);
     const hotelPricePerNight = selectedHotelObj ? Number(selectedHotelObj.price) : 0;
 
@@ -139,7 +139,7 @@ return (
             </p>
             <p><strong>Viso: {selectedHotel ? `${totalTripCost.toLocaleString()}€` : "---"}</strong></p>
         </div>
-            <button type="submit" onClick={submitHandler} disabled={!selectedHotel}>
+            <button type="submit" onClick={submitHandler} disabled={!selectedHotel || !selectedDates.start}>
                 Siųsti užklausą
             </button>
 
