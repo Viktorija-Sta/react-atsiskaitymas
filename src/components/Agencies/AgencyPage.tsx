@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
-import { API_URL } from "../components/config"
-import TripItem from "../components/Trips/TripItem"
-import { AgenciesItem, TravelItem } from "./travelReducer"
+import { API_URL } from "../config"
+import { AgenciesItem, TravelItem } from "../../pages/travelReducer"
+import TripItem from "../Trips/TripItem"
 
 const AgencyPage: React.FC = () => {
     const { id } = useParams() as { id: string }

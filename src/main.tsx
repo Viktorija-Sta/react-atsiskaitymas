@@ -8,7 +8,7 @@ import FormPage from './components/FormPage/FormPage'
 import TripInformation from './components/TripInformation/TripInformation'
 import EditTripInformation from './components/EditTripInformation/EditTripInformation'
 import AgenciesList from './components/Agencies/AgenciesList'
-import AgencyPage from './pages/AgencyPage'
+import AgencyPage from './components/Agencies/AgencyPage'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

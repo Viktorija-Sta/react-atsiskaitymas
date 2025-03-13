@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useTravelPageContext } from "../../pages/TravelPageContextProvider";
-import { HotelItem, TravelItem } from "../../pages/travelReducer";
+import { AgenciesItem, HotelItem, TravelItem } from "../../pages/travelReducer";
 
 const FormPage: React.FC = () => {
-    const { addItem, addHotel, trips,  } = useTravelPageContext()
+    const { addItem, addHotel, trips, addAgency } = useTravelPageContext()
     const navigate = useNavigate()
 
     const [title, setTitle] = useState('')
@@ -19,6 +19,7 @@ const FormPage: React.FC = () => {
     const [galleryLinks, setGalleryLinks] = useState('')
     
     const [agency, setAgency] = useState({
+        id: '',
         name: '',
         location: '',
         email: '',
@@ -42,7 +43,20 @@ const FormPage: React.FC = () => {
 
         const galleryUrlArray = galleryLinks.split(",").map(link => link.trim()).filter(link => link !== "")
         const tripId = generateUniqueId()
+        const agencyId = generateUniqueId();
 
+
+        const newAgency: AgenciesItem = {
+            id: agencyId,
+            name: agency.name,
+            location: agency.location,
+            contacts: [
+                {
+                    email: agency.email,
+                    phone: agency.phone,
+                }
+            ]
+        }
         const newTrip: TravelItem = {
             id: tripId,
             title,
@@ -53,7 +67,7 @@ const FormPage: React.FC = () => {
             duration,
             fullDescription,
             gallery: galleryUrlArray,
-            agency: agency.name,
+            agencyId: agencyId
         }
 
         const newHotel: HotelItem = {
@@ -65,6 +79,7 @@ const FormPage: React.FC = () => {
 
         await addItem(newTrip)
         await addHotel(newHotel)
+        await addAgency(newAgency)
 
         navigate("/")
     }
@@ -73,9 +88,9 @@ const FormPage: React.FC = () => {
         <>
             <h2>Pridėti naują kelionės kryptį</h2>
             <form onSubmit={submitHandler}>
-                <input type="text" placeholder="Pavadinimas" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                <input type="text" placeholder="Miestas, Šalis" value={title} onChange={(e) => setTitle(e.target.value)} required />
                 <input type="text" placeholder="Aprašymas" value={description} onChange={(e) => setDescription(e.target.value)} required />
-                <input type="text" placeholder="Trukmė" value={duration} onChange={(e) => setDuration(e.target.value)} required />
+                <input type="text" placeholder="Trukmė(d. dienos)" value={duration} onChange={(e) => setDuration(e.target.value)} required />
                 <textarea placeholder="Platesnė informacija" value={fullDescription} onChange={(e) => setFullDescription(e.target.value)} required />
                 <input type="text" placeholder="Titulinė nuotrauka" value={image} onChange={(e) => setImage(e.target.value)} required />
                 <label>Galerijos nuotraukos (nuorodos, atskirkite kableliais)</label>
@@ -85,7 +100,7 @@ const FormPage: React.FC = () => {
 
                 <h3>Kelionių organizatorius</h3>
                 <input type="text" name="name" placeholder="Pavadinimas" value={agency.name} onChange={agencyChangeHandler} required />
-                <input type="text" name="location" placeholder="Vieta" value={agency.location} onChange={agencyChangeHandler} required />
+                <input type="text" name="location" placeholder="Lokacija" value={agency.location} onChange={agencyChangeHandler} required />
                 <input type="email" name="email" placeholder="El. paštas" value={agency.email} onChange={agencyChangeHandler} required />
                 <input type="tel" name="phone" placeholder="Telefonas" value={agency.phone} onChange={agencyChangeHandler} required />
 

@@ -8,7 +8,7 @@ export interface TravelItem {
     duration: string
     fullDescription: string
     gallery: string[], 
-    agency: string
+    agencyId: string
 }
 
 export interface HotelItem {
@@ -100,7 +100,7 @@ export const travelPageReducer = (state: TravelPageState, action: TravelPageActi
                 ...state,
                 trips: action.payload,
             }
-            
+
         default:
             return state
     }

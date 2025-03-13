@@ -2,6 +2,7 @@
   "destinations": [
     {
       "id": "1",
+      "agencyId": "1",
       "title": "Paryžius, Prancūzija",
       "description": "Romantiškas miestas su garsiais lankytinais objektais, tokiais kaip Eifelio bokštas ir Luvras.",
       "fullDescription": "Paryžius - vienas iš romantiškiausių miestų pasaulyje, kuris garsėja savo garsiais lankytinais objektais, tokiais kaip Eifelio bokštas, Luvras, Notr Damo katedra, Triumfo arka, Montmartro kalnas, Sena miesto gatvės ir aikštės bei daugybė kitų. Tai vienas iš tų miestų, kuriuos reikia pamatyti bent kartą gyvenime. Paryžiuje galima mėgautis prancūzišku maistu, vynu, ledais, kava, aukščiausios kokybės gelatu, o vakarais - pasivaikščioti po miesto gatves, kuriomis sklando romantiška atmosfera.",
@@ -16,6 +17,7 @@
     },
     {
       "id": "2",
+      "agencyId": "5",
       "title": "Balis, Indonezija",
       "description": "Egzotiška sala su balto smėlio paplūdimiais ir nuostabiais saulėlydžiais.",
       "fullDescription": " Bali - tai Indonezijos sala, kuri garsėja savo balto smėlio paplūdimiais, nuostabiais saulėlydžiais, turkiškai mėlynais vandenimis, egzotiška gamta, kultūra ir tradicijomis. Tai viena iš populiariausių atostogų vietų pasaulyje, kurioje galima mėgautis atostogomis visiems skoniams. Balio paplūdimiuose galima mėgautis saule, jūra, bangomis, vandens sportais, masažais, spa procedūromis, egzotišku maistu",
@@ -31,6 +33,7 @@
     },
     {
       "id": "3",
+      "agencyId": "1",
       "title": "Niujorkas, JAV",
       "description": "Didžiausias JAV miestas, kuriame galima pamatyti laisvės statulą ir pasivaikščioti Central Park.",
       "fullDescription": " Niujorkas - didžiausias JAV miestas, kuriame galima pamatyti laisvės statulą, pasivaikščioti Central Park, aplankyti Niujorko muziejų, Niujorko operą, Niujorko prekybos centrą, Niujorko botanikos sodą, Niujorko zoologijos sodą, Niujorko planetariumą, Niujorko meno muziejų, Niujorko istorijos muziejų, Niujorko šiuolaikinio meno muziejų, Niujorko kinematografijos muziejų, Niujorko dizaino muziejų, Niujorko fotografijos muziejų, Niujorko vaikų muziejų, Niujorko mokslinio mokymo muziejų, Niujorko technologijų muziejų, Niujorko žydų muziejų, Niujorko karo muziejų, Niujorko karo oro laivyno muziejų, Niujorko karo jūrų muziejų, Niujorko karo laivų muziejų, Niujorko karo aviacijos muziejų, Niujorko karo istorijos muziejų, Niujorko karo laivų muziejų, Niujorko karo oro laivyno muziejų, Niujorko karo jūrų muziejų, Niujorko karo laivų muziejų, Niujorko karo aviacijos muziejų, Niujorko karo istorijos muziejų, Niujorko karo laivų muziejų, Niujorko karo oro laivyno muziejų, Niujorko karo jūrų muziejų ir daugybė kitų. Niujorke taip pat galima mėgautis amerikietišku maistu, vynu, ledais, kava, aukščiausios kokybės gelatu, o vakarais - pasivaikščioti po miesto gatves, kuriomis sklando romantiška atmosfera.",
@@ -46,6 +49,7 @@
     },
     {
       "id": "4",
+      "agencyId": "3",
       "title": "Roma, Italija",
       "description": "Miestas, kuriame galima pamatyti senovinius pastatus, tokius kaip Koliziejus ir Fontanas di Trevi.",
       "fullDescription": "Roma - vienas iš seniausių ir įspūdingiausių Europos miestų, kuris garsėja savo istorija, kultūra, architektūra ir virtuve. Tai vienas iš tų miestų, kuriuos reikia pamatyti bent kartą gyvenime. Romoje galima pamatyti daugybę senovinių pastatų, tokių kaip Koliziejus, Forumas, Pantheonas, Fontanas di Trevi, Ispanų laiptai, Vatikano muziejus, Šventapilis, Panteonas, Romos forumas, Kapitolijus ir daugybė kitų. Romoje taip pat galima mėgautis itališku maistu, vynu, ledais, kava, aukščiausios kokybės gelatu, o vakarais - pasivaikščioti po miesto gatves, kuriomis sklando romantiška atmosfera.",
@@ -61,6 +65,7 @@
     },
     {
       "id": "5",
+      "agencyId": "4",
       "title": "Tokijas, Japonija",
       "description": "Modernus miestas su aukščiausiais dangoraižiais ir tradicinėmis šventėmis.",
       "fullDescription": "Sakoma, kad nuvykus į Japoniją galima pasijusti tarsi atsidūrus kitoje planetoje – nesuprantama kalba ir užrašai, svaiginantys megapoliai, kuriuos keičia ramybe dvelkiantys kaimai ir nuostabi gamta su legendiniu Fudžio kalnu, tikras japoniškas maistas, arbata, tradiciniai ritualai ir daugybė kitų patirčių, kurių tikėtis galima tik Tekančios saulės šalyje ir niekur daugiau. Visa tai atrodo dar gražiau ir autentiškau pavasarį – sakurų žydėjimo metu. Tai ypatingas laikotarpis, kai visi japonai išeina į gatves, parkus ir sodus, kad pasimėgautų šio žydėjimo grožiu. Tai ypatingas laikotarpis, kai visi japonai išeina į gatves, parkus ir sodus, kad pasimėgautų šio žydėjimo grožiu.",
@@ -137,28 +142,22 @@
       "price": 190
     },
     {
-      "id": "gdf1735xc",
-      "destinationId": "di5c2jr4g",
-      "name": "amberton",
-      "price": 23
+      "id": "1v4h1nvzd",
+      "destinationsId": "oov4b1ud4",
+      "name": "eriii",
+      "price": 180
     },
     {
-      "id": "9qopuolcu",
-      "destinationId": "m7dnhxg5h",
-      "name": "amberton",
+      "id": "szh6o5pvf",
+      "destinationsId": "ml1uirbm0",
+      "name": "sffs",
       "price": 34
     },
     {
-      "id": "caqqu9ppo",
-      "destinationId": "drqcvze2z",
-      "name": "amberton",
-      "price": 56
-    },
-    {
-      "id": "pgw0hojq0",
-      "destinationId": "68bqq2a9s",
-      "name": "amberton",
-      "price": 45
+      "id": "4ljoyku81",
+      "destinationsId": "ueh7ba22i",
+      "name": "zdb sx",
+      "price": 34
     }
   ],
   "agencies": [
@@ -177,7 +176,7 @@
       "id": "2",
       "name": "Pelago",
       "location": "Lietuvoje",
-      "contacts":[
+      "contacts": [
         {
           "email": "pelago@pelago.com",
           "phone": "+44387293872837"
@@ -188,7 +187,7 @@
       "id": "3",
       "name": "NatGeo",
       "location": "JAV",
-      "contacts":[
+      "contacts": [
         {
           "email": "netgeo@netgeo.com",
           "phone": "+38462873563857"
@@ -199,7 +198,7 @@
       "id": "4",
       "name": "Interlux",
       "location": "Latvijoje",
-      "contacts":[
+      "contacts": [
         {
           "email": "interlux@interlux.com",
           "phone": "+37623587232837"
@@ -210,14 +209,25 @@
       "id": "5",
       "name": "Caz",
       "location": "Latvijoje",
-      "contacts":[
+      "contacts": [
         {
           "email": "caz@caz.com",
           "phone": "+78237598375298"
         }
       ]
+    },
+    {
+      "id": "3flcgvbvf",
+      "name": "zvgdeg",
+      "location": "kazkur toli",
+      "contacts": [
+        {
+          "email": "hbgvfcd@vdf.by",
+          "phone": "345333"
+        }
+      ]
     }
-  ], 
+  ],
   "destinationsAgencies": [
     {
       "id": "1",

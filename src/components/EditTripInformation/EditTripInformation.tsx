@@ -27,7 +27,7 @@ const EditTripInformation: React.FC = () => {
     useEffect(() => {
         const fetchTripData = async () => {
             try {
-                const tripRes = await fetch(`${API_URL}/destinations${id}`);
+                const tripRes = await fetch(`${API_URL}/destinations/${id}`);
                 const tripData = await tripRes.json();
     
                 const hotelsRes = await fetch(`${API_URL}/hotels?destinationId=${id}`)

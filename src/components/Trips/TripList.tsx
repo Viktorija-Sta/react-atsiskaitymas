@@ -5,13 +5,14 @@ import React from "react"
 
 
 const TripList: React.FC = () => {
-    const { trips, fetchDestinations } = useTravelPageContext()
+    const { trips, fetchDestinations, fetchAgencies } = useTravelPageContext()
 
-    
+    console.log("Kelionių sąrašas:", trips)
     
     React.useEffect(() => {
         fetchDestinations()
-    }, [fetchDestinations])
+        fetchAgencies()
+    }, [fetchDestinations, fetchAgencies])
 
 
     return (
@@ -30,7 +31,7 @@ const TripList: React.FC = () => {
                 <div className="trips">
                 {trips.map((trip) => (
                     <Link key={trip.id} to={`/trip/${trip.id}`}>
-                        <TripItem data={trip} />
+                        <TripItem data={trip}  />
                     </Link>
                 ))}
             </div>

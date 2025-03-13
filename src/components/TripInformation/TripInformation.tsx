@@ -38,7 +38,7 @@ const TripInformation: React.FC = () => {
         
         const fetchTrip = async () => {
             try {
-                const res = await fetch(`${API_URL}/destinations${id}`)
+                const res = await fetch(`${API_URL}/destinations/${id}`)
                 if (!res.ok) throw new Error("Nepavyko gauti kelionės duomenų")
                 const data = await res.json()
                 setTrip(data)
@@ -60,27 +60,28 @@ const TripInformation: React.FC = () => {
     
         fetchTrip()
         fetchHotels()
-    }, [id, setTrip, setHotels])
+    }, [id])
     
 
 
     if (!trip) return <p>Kraunama...</p>
     if (!trip.title) return <p>Klaida: Kelionės duomenys nepasiekiami</p>
 
-const tripDuration = isNaN(Number(trip.duration)) ? 1 : Number(trip.duration)
-const selectedHotelObj = hotels.find((hotel) => hotel.id === selectedHotel)
-const hotelPricePerNight = selectedHotelObj ? Number(selectedHotelObj.price) : 0
-const totalHotelCost = selectedHotelObj ? hotelPricePerNight * tripDuration : 0
-const totalTripCost = (Number(trip.price) || 0) + (Number(totalHotelCost) || 0)
+    const tripDuration = parseInt(trip.duration, 10) || 1;
+    const selectedHotelObj = hotels.find((hotel) => hotel.id === selectedHotel);
+    const hotelPricePerNight = selectedHotelObj ? Number(selectedHotelObj.price) : 0;
+
+    const totalHotelCost = selectedHotelObj ? hotelPricePerNight * tripDuration : 0;
+    const totalTripCost = (Number(trip.price) || 0) + totalHotelCost;
 
 
-const submitHandler = () => {
-    setIsPopupOpen(true)
-}
+    const submitHandler = () => {
+        setIsPopupOpen(true)
+    }
 
-const closePopup = () => {
-    setIsPopupOpen(false)
-}
+    const closePopup = () => {
+        setIsPopupOpen(false)
+    }
 
 
 return (
@@ -99,7 +100,7 @@ return (
         <div className="image-gallery">
     {Array.isArray(trip.gallery) ? (
         trip.gallery.map((img, index) => (
-            <img key={index} src={img} alt={`${trip.title} ${index + 1}`} />
+            <img key={index} src={img} alt={`${trip.title} ${index + 1}`} width={400} />
         ))
     ) : (
         <p>Galerijos nuotraukos nerastos.</p>
@@ -136,11 +137,8 @@ return (
                     ? `Kelionė: ${trip.price}€ + Viešbutis: ${totalHotelCost}€ (${hotelPricePerNight}€/naktis × ${tripDuration} n.)`
                     : "Pasirinkite viešbutį, kad matytumėte kainą"}
             </p>
-
-            <p><strong>Viso: {selectedHotel ? totalTripCost.toLocaleString() + "€" : "---"}</strong></p>
-
+            <p><strong>Viso: {selectedHotel ? `${totalTripCost.toLocaleString()}€` : "---"}</strong></p>
         </div>
-
             <button type="submit" onClick={submitHandler} disabled={!selectedHotel}>
                 Siųsti užklausą
             </button>
