@@ -144,7 +144,6 @@
   ],
   "agencies": [
     {
-      "id": "1",
       "name": "Makalius",
       "location": "Lietuvoje",
       "contacts": [
@@ -152,7 +151,8 @@
           "email": "labas@makalius.lt",
           "phone": "+370 639 96444"
         }
-      ]
+      ],
+      "id": "1"
     },
     {
       "id": "2",

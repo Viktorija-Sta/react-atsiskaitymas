@@ -54,7 +54,7 @@ const EditAgencyInformation: React.FC = () => {
                 body: JSON.stringify(editedAgency),
             });
 
-            navigate('/agencies');
+            navigate(`/agency/${id}`)
         } catch (error) {
             console.error("Klaida išsaugant agentūros duomenis:", error);
         }

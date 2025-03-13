@@ -54,7 +54,7 @@ const AgencyPage: React.FC = () => {
 
     return (
         <div className="agency-page">
-            <Link to="/agencies/edit">Redaguoti agentūrą</Link>
+            {agency && <Link to={`/agencies/edit/${agency.id}`}>Redaguoti agentūrą</Link>}
             {agency && (
                 <div className="agency-info">
                     <h2>"{agency.name}"</h2>

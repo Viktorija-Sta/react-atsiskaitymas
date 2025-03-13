@@ -22,7 +22,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/trip/edit/:id" element={<EditTripInformation />} />
           <Route path='/agencies' element={<AgenciesList />} />
           <Route path='/agency/:id' element={<AgencyPage />} />
-          <Route path='/agencies/edit' element={<EditAgencyInformation />} />
+          <Route path='/agencies/edit/:id' element={<EditAgencyInformation />} />
         </Routes>
       </BrowserRouter>
     </TravelPageContextProvider>
