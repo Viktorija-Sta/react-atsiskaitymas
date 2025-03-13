@@ -9,6 +9,7 @@ import TripInformation from './components/TripInformation/TripInformation'
 import EditTripInformation from './components/EditTripInformation/EditTripInformation'
 import AgenciesList from './components/Agencies/AgenciesList'
 import AgencyPage from './components/Agencies/AgencyPage'
+import EditAgencyInformation from './components/EditTripInformation/EditAgencyInformation'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/trip/edit/:id" element={<EditTripInformation />} />
           <Route path='/agencies' element={<AgenciesList />} />
           <Route path='/agency/:id' element={<AgencyPage />} />
+          <Route path='/agencies/edit' element={<EditAgencyInformation />} />
         </Routes>
       </BrowserRouter>
     </TravelPageContextProvider>
