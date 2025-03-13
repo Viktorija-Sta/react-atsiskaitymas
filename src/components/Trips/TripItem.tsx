@@ -1,25 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TravelItem } from "../../pages/travelReducer";
 import { useTravelPageContext } from "../../pages/TravelPageContextProvider";
 
 interface TripItemProps {
-    data: TravelItem
+    data: TravelItem;
 }
 
 const TripItem: React.FC<TripItemProps> = ({ data }) => {
-    const { removeItem, agencies } = useTravelPageContext();
-    const { id, title, description, price, image, agencyId } = data
+    const { removeItem, agencies, fetchAgencies } = useTravelPageContext();
+    const { id, title, description, price, image, agencyId } = data;
 
+    const [agencyData, setAgencyData] = useState<{ id: string; name: string } | null>(null);
     const [isDeleting, setIsDeleting] = useState(false);
 
     console.log("Kelionės duomenys:", data);
     console.log("Kelionės agentūros ID:", agencyId);
+    console.log("Turimos agentūros:", agencies);
 
-    if (!agencies || agencies.length === 0) {
-        return <p>Kraunama kelionės informacija...</p>;
-    }
+    useEffect(() => {
+        if (!agencies || agencies.length === 0) {
+            fetchAgencies();
+        }
+    }, [agencies, fetchAgencies]);
 
-    const agencyData = agencyId ? agencies.find((agencyItem) => agencyItem.id === agencyId) : null;
+    useEffect(() => {
+        if (agencies && agencyId) {
+            const foundAgency = agencies.find((agencyItem) => Number(agencyItem.id) === Number(agencyId));
+            setAgencyData(foundAgency || null);
+        }
+    }, [agencies, agencyId]);
 
     console.log("Rasta agentūra:", agencyData);
 
@@ -31,15 +40,13 @@ const TripItem: React.FC<TripItemProps> = ({ data }) => {
         setIsDeleting(true);
 
         try {
-            await removeItem(id)
-
+            await removeItem(id);
         } catch (error) {
-            console.error("Klaida šalinant kelionę:", error)
-
+            console.error("Klaida šalinant kelionę:", error);
         } finally {
-            setIsDeleting(false)
+            setIsDeleting(false);
         }
-    }
+    };
 
     return (
         <div className="trip-item">
@@ -52,16 +59,16 @@ const TripItem: React.FC<TripItemProps> = ({ data }) => {
             ) : (
                 <p>Organizatorius: Nežinomas</p>
             )}
-            
-            <button 
-                onClick={deleteHandler} 
-                disabled={isDeleting} 
+
+            <button
+                onClick={deleteHandler}
+                disabled={isDeleting}
                 className={isDeleting ? "disabled-button" : ""}
             >
                 {isDeleting ? "Šalinama..." : "Šalinti"}
             </button>
         </div>
-    )
-}
+    );
+};
 
-export default TripItem
+export default TripItem;

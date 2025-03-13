@@ -22,11 +22,12 @@ export interface AgenciesItem {
     id: string
     name: string
     location: string
-    contacts:
+    contacts:[
         {
             email: string
             phone: string
-        }[] 
+        }
+    ]
 }
 
 export interface TravelPageState {
@@ -49,8 +50,8 @@ export type TravelPageAction =
     | { type: TravelPageActionType.REMOVE_DESTINATION, payload: string }
     | { type: TravelPageActionType.UPDATE_DESTINATION, payload: TravelItem }
     | { type: TravelPageActionType.SET_DESTINATIONS, payload: TravelItem[] }
-    | { type: TravelPageActionType.ADD_HOTELS, payload: HotelItem }
-    | {type: TravelPageActionType.ADD_AGENCY, payload: AgenciesItem}
+    | { type: TravelPageActionType.ADD_HOTELS, payload: HotelItem[] }
+    | {type: TravelPageActionType.ADD_AGENCY, payload: AgenciesItem[]}
 
 
 export const initialState: TravelPageState = {
@@ -70,13 +71,13 @@ export const travelPageReducer = (state: TravelPageState, action: TravelPageActi
         case TravelPageActionType.ADD_HOTELS:
             return {
                 ...state,
-                hotels: [...state.hotels, action.payload],
+                hotels: [...state.hotels, ...action.payload],
             }
 
         case TravelPageActionType.ADD_AGENCY:
             return {
                  ...state,
-                agencies: [...state.agencies, action.payload],
+                agencies: [...state.agencies, ...action.payload],
             }
 
         case TravelPageActionType.REMOVE_DESTINATION:
@@ -104,3 +105,4 @@ export const travelPageReducer = (state: TravelPageState, action: TravelPageActi
             return state
     }
 }
+

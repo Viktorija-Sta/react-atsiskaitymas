@@ -1,19 +1,18 @@
-import { Link } from "react-router"
-import { useTravelPageContext } from "../../pages/TravelPageContextProvider"
-import TripItem from "./TripItem"
-import React from "react"
-
+import { Link } from "react-router";
+import { useTravelPageContext } from "../../pages/TravelPageContextProvider";
+import TripItem from "./TripItem";
+import React, { useEffect } from "react";
 
 const TripList: React.FC = () => {
-    const { trips, fetchDestinations, fetchAgencies } = useTravelPageContext()
+    const { trips, fetchDestinations, fetchAgencies, agencies } = useTravelPageContext();
 
-    console.log("Kelionių sąrašas:", trips)
-    
-    React.useEffect(() => {
-        fetchDestinations()
-        fetchAgencies()
-    }, [fetchDestinations, fetchAgencies])
+    console.log("Kelionių sąrašas:", trips);
+    console.log("Agentūros sąrašas:", agencies);
 
+    useEffect(() => {
+        fetchDestinations();
+        fetchAgencies();
+    }, []);
 
     return (
         <div className="trip-list">
@@ -28,20 +27,20 @@ const TripList: React.FC = () => {
             </div>
 
             <h2>Naujausi kelionių pasiūlymai</h2>
-            
+
             {trips.length > 0 ? (
                 <div className="trips">
-                {trips.map((trip) => (
-                    <Link key={trip.id} to={`/trip/${trip.id}`}>
-                        <TripItem data={trip}  />
-                    </Link>
-                ))}
-            </div>
+                    {trips.map((trip) => (
+                        <Link key={trip.id} to={`/trip/${trip.id}`}>
+                            <TripItem data={trip} />
+                        </Link>
+                    ))}
+                </div>
             ) : (
                 <p>Atsiprašome, kelionių šiuo metu neturime</p>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default TripList
+export default TripList;
