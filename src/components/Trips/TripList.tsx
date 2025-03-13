@@ -6,6 +6,8 @@ import React from "react"
 
 const TripList: React.FC = () => {
     const { trips, fetchDestinations } = useTravelPageContext()
+
+    
     
     React.useEffect(() => {
         fetchDestinations()
@@ -16,6 +18,10 @@ const TripList: React.FC = () => {
         <div className="trip-list">
             <Link to="create/">
                 <button>Pridėti naują kelionę</button>
+            </Link>
+
+            <Link to='/agencies'>
+                <button>Kelionių agentūros</button>
             </Link>
 
             <h2>Naujausi kelionių pasiūlymai</h2>

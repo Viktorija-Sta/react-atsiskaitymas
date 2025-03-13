@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
+import { API_URL } from "../config";
 
 interface Hotel {
     name: string;
@@ -25,10 +26,10 @@ const EditTripInformation: React.FC = () => {
     useEffect(() => {
         const fetchTripData = async () => {
             try {
-                const tripRes = await fetch(`http://localhost:3000/destinations/${id}`);
+                const tripRes = await fetch(`${API_URL}/destinations${id}`);
                 const tripData = await tripRes.json();
     
-                const hotelsRes = await fetch(`http://localhost:3000/hotels?destinationsId=${id}`)
+                const hotelsRes = await fetch(`${API_URL}/hotels?destinationId=${id}`)
                 const hotelsData = await hotelsRes.json()
 
                 console.log("Kelionės duomenys:", tripData)

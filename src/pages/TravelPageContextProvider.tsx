@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useReducer, useRef } from "react"
 import { HotelItem, initialState, TravelItem, TravelPageActionType, travelPageReducer, TravelPageState } from "./travelReducer"
+import { API_URL } from "../components/config"
 
 
 interface TravelPageContextType extends TravelPageState {
@@ -24,8 +25,8 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
     const fetchDestinations = useCallback(async () => {
     try {
         const [destinationsRes, hotelsRes] = await Promise.all([
-            fetch("http://localhost:3000/destinations"),
-            fetch("http://localhost:3000/hotels")
+            fetch(`${API_URL}/destinations`),
+            fetch(`${API_URL}/hotels`)
         ])
 
         if (!destinationsRes.ok || !hotelsRes.ok) throw new Error("Failed to fetch data")
@@ -46,7 +47,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
 
     const addItem = useCallback(async (item: TravelItem) => {
         try {
-            const res = await fetch("http://localhost:3000/destinations", {
+            const res = await fetch(`${API_URL}/destinations`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(item),
@@ -62,7 +63,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
 
     const addHotel = useCallback(async (hotel: HotelItem) => {
         try {
-            const res = await fetch("http://localhost:3000/hotels", {
+            const res = await fetch(`${API_URL}/hotels`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(hotel),
@@ -81,7 +82,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
 
     const removeItem = useCallback(async (id: string) => {
         try {
-            const res = await fetch(`http://localhost:3000/destinations/${id}`, { method: "DELETE" })
+            const res = await fetch(`${API_URL}/destinations${id}`, { method: "DELETE" })
             if (!res.ok) throw new Error("Failed to remove destination")
     
             dispatch({ type: TravelPageActionType.REMOVE_DESTINATION, payload: id })
@@ -93,7 +94,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
 
     const updateItem = useCallback(async (item: TravelItem) => {
         try {
-            const res = await fetch(`http://localhost:3000/destinations/${item.id}`, {
+            const res = await fetch(`${API_URL}/destinations${item.id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(item),

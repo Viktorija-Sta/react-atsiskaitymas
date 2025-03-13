@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
+import { API_URL } from "../config";
 
 interface Trip {
     id: string
@@ -17,13 +18,6 @@ interface Hotel {
     name: string
     price: number
 }
-
-// interface Agency {
-//     id: string
-//     name: string
-//     location: string
-//     link: string
-// }
 
 const TripInformation: React.FC = () => {
     const { id } = useParams<Record<string, string | undefined>>()
@@ -44,7 +38,7 @@ const TripInformation: React.FC = () => {
         
         const fetchTrip = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/destinations/${id}`)
+                const res = await fetch(`${API_URL}/destinations${id}`)
                 if (!res.ok) throw new Error("Nepavyko gauti kelionės duomenų")
                 const data = await res.json()
                 setTrip(data)
@@ -55,7 +49,7 @@ const TripInformation: React.FC = () => {
     
         const fetchHotels = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/hotels?destinationsId=${id}`)
+                const res = await fetch(`${API_URL}/hotels?destinationId=${id}`)
                 if (!res.ok) throw new Error("Nepavyko gauti viešbučių")
                 const data = await res.json()
                 setHotels(data)

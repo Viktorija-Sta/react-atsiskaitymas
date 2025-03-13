@@ -7,6 +7,8 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import FormPage from './components/FormPage/FormPage'
 import TripInformation from './components/TripInformation/TripInformation'
 import EditTripInformation from './components/EditTripInformation/EditTripInformation'
+import AgenciesList from './components/Agencies/AgenciesList'
+import AgencyPage from './pages/AgencyPage'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -17,6 +19,8 @@ createRoot(document.getElementById('root')!).render(
           <Route path='create' element={<FormPage />} />
           <Route path='/trip/:id' element={<TripInformation/>} />
           <Route path="/trip/edit/:id" element={<EditTripInformation />} />
+          <Route path='/agencies' element={<AgenciesList />} />
+          <Route path='/agency/:id' element={<AgencyPage />} />
         </Routes>
       </BrowserRouter>
     </TravelPageContextProvider>

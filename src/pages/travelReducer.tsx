@@ -18,6 +18,13 @@ export interface HotelItem {
     price: number
 }
 
+export interface AgenciesItem {
+    id: string
+    name: string
+    location: string
+    link?: string
+}
+
 export interface TravelPageState {
     trips: TravelItem[]
     hotels: HotelItem[] 
