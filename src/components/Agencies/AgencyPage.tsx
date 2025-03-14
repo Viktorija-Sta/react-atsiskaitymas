@@ -5,52 +5,55 @@ import { AgenciesItem, TravelItem } from "../../pages/travelReducer";
 import TripItem from "../Trips/TripItem";
 
 const AgencyPage: React.FC = () => {
-    const { id } = useParams() as { id: string };
-    const [agency, setAgency] = useState<AgenciesItem | null>(null);
-    const [trips, setTrips] = useState<TravelItem[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const { id } = useParams() as { id: string }
+    const [agency, setAgency] = useState<AgenciesItem | null>(null)
+    const [trips, setTrips] = useState<TravelItem[]>([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
         const fetchAgencyData = async () => {
             try {
-                const agencyRes = await fetch(`${API_URL}/agencies`);
-                if (!agencyRes.ok) throw new Error("Nepavyko gauti agentūros duomenų");
-                const agenciesData: AgenciesItem[] = await agencyRes.json();
-                const foundAgency = agenciesData.find((a) => a.id === id) || null;
+                const agencyRes = await fetch(`${API_URL}/agencies`)
+                if (!agencyRes.ok) throw new Error("Nepavyko gauti agentūros duomenų")
+
+                const agenciesData: AgenciesItem[] = await agencyRes.json()
+                const foundAgency = agenciesData.find((a) => a.id === id) || null
                 
                 if (!foundAgency) {
-                    setError("Agentūra nerasta");
-                    setLoading(false);
-                    return;
+                    setError("Agentūra nerasta")
+                    setLoading(false)
+                    return
                 }
 
-                setAgency(foundAgency);
+                setAgency(foundAgency)
 
-                const tripsRes = await fetch(`${API_URL}/destinations`);
-                if (!tripsRes.ok) throw new Error("Nepavyko gauti agentūros kelionių");
-                const tripsData: TravelItem[] = await tripsRes.json();
+                const tripsRes = await fetch(`${API_URL}/destinations`)
+                if (!tripsRes.ok) throw new Error("Nepavyko gauti agentūros kelionių")
+
+                const tripsData: TravelItem[] = await tripsRes.json()
 
                 if (!Array.isArray(tripsData)) {
-                    throw new Error("Blogas tripsData formatas");
+                    throw new Error("Blogas tripsData formatas")
                 }
 
-                const filteredTrips = tripsData.filter((trip) => trip.agencyId === id);
-                setTrips(filteredTrips);
+                const filteredTrips = tripsData.filter((trip) => trip.agencyId === id)
+                setTrips(filteredTrips)
 
             } catch (error) {
-                setError("Įvyko klaida");
-                console.error(error);
+                setError("Įvyko klaida")
+                console.error(error)
+
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
-        };
+        }
 
-        fetchAgencyData();
-    }, [id]);
+        fetchAgencyData()
+    }, [id])
 
-    if (loading) return <p>Kraunama...</p>;
-    if (error) return <p className="error">{error}</p>;
+    if (loading) return <p>Kraunama...</p>
+    if (error) return <p className="error">{error}</p>
 
     return (
         <div className="agency-page">
@@ -77,7 +80,7 @@ const AgencyPage: React.FC = () => {
                 <p>Ši agentūra dar neturi kelionių</p>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default AgencyPage;
+export default AgencyPage

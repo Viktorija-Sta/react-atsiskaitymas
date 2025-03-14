@@ -3,50 +3,52 @@ import { TravelItem } from "../../pages/travelReducer";
 import { useTravelPageContext } from "../../pages/TravelPageContextProvider";
 
 interface TripItemProps {
-    data: TravelItem;
+    data: TravelItem
 }
 
 const TripItem: React.FC<TripItemProps> = ({ data }) => {
-    const { removeItem, agencies, fetchAgencies } = useTravelPageContext();
-    const { id, title, description, price, image, agencyId } = data;
+    const { removeItem, agencies, fetchAgencies } = useTravelPageContext()
+    const { id, title, description, price, image, agencyId } = data
 
-    const [agencyData, setAgencyData] = useState<{ id: string; name: string } | null>(null);
-    const [isDeleting, setIsDeleting] = useState(false);
+    const [agencyData, setAgencyData] = useState<{ id: string; name: string } | null>(null)
+    const [isDeleting, setIsDeleting] = useState(false)
 
-    console.log("Kelionės duomenys:", data);
-    console.log("Kelionės agentūros ID:", agencyId);
-    console.log("Turimos agentūros:", agencies);
+    console.log("Kelionės duomenys:", data)
+    console.log("Kelionės agentūros ID:", agencyId)
+    console.log("Turimos agentūros:", agencies)
 
     useEffect(() => {
         if (!agencies || agencies.length === 0) {
-            fetchAgencies();
+            fetchAgencies()
         }
-    }, [agencies, fetchAgencies]);
+    }, [agencies, fetchAgencies])
 
     useEffect(() => {
         if (agencies && agencyId) {
-            const foundAgency = agencies.find((agencyItem) => Number(agencyItem.id) === Number(agencyId));
-            setAgencyData(foundAgency || null);
+            const foundAgency = agencies.find((agencyItem) => Number(agencyItem.id) === Number(agencyId))
+            setAgencyData(foundAgency || null)
         }
-    }, [agencies, agencyId]);
+    }, [agencies, agencyId])
 
-    console.log("Rasta agentūra:", agencyData);
+    console.log("Rasta agentūra:", agencyData)
 
     const deleteHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        if (!window.confirm("Ar tikrai norite pašalinti šią kelionę?")) return;
+        if (!window.confirm("Ar tikrai norite pašalinti šią kelionę?")) return
 
-        setIsDeleting(true);
+        setIsDeleting(true)
 
         try {
-            await removeItem(id);
+            await removeItem(id)
+
         } catch (error) {
-            console.error("Klaida šalinant kelionę:", error);
+            console.error("Klaida šalinant kelionę:", error)
+
         } finally {
             setIsDeleting(false);
         }
-    };
+    }
 
     return (
         <div className="trip-item">
@@ -68,7 +70,7 @@ const TripItem: React.FC<TripItemProps> = ({ data }) => {
                 {isDeleting ? "Šalinama..." : "Šalinti"}
             </button>
         </div>
-    );
-};
+    )
+}
 
-export default TripItem;
+export default TripItem

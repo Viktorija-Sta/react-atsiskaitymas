@@ -3,22 +3,22 @@ import { useParams, useNavigate } from "react-router";
 import { API_URL } from "../config";
 
 const EditAgencyInformation: React.FC = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
+    const { id } = useParams()
+    const navigate = useNavigate()
 
     const [editedAgency, setEditedAgency] = useState({ 
         name: '',
         location: '',
         contacts: [{ email: '', phone: '' }]
-    });
+    })
 
     useEffect(() => {
         const fetchAgencyData = async () => {
             try {
-                const agencyRes = await fetch(`${API_URL}/agencies/${id}`);
-                const agencyData = await agencyRes.json();
+                const agencyRes = await fetch(`${API_URL}/agencies/${id}`)
+                const agencyData = await agencyRes.json()
 
-                console.log("Agentūros duomenys:", agencyData);
+                console.log("Agentūros duomenys:", agencyData)
 
                 setEditedAgency({
                     name: agencyData.name || '',
@@ -26,23 +26,23 @@ const EditAgencyInformation: React.FC = () => {
                     contacts: agencyData.contacts?.length > 0 
                     ? agencyData.contacts 
                     : [{ email: '', phone: '' }]
-                });
+                })
 
             } catch (error) {
-                console.error("Klaida gaunant agentūros duomenis:", error);
+                console.error("Klaida gaunant agentūros duomenis:", error)
             }
-        };
+        }
 
-        fetchAgencyData();
-    }, [id]);
+        fetchAgencyData()
+    }, [id])
 
     const contactChangeHandler = (index: number, field: "email" | "phone", value: string) => {
         setEditedAgency((prev) => {
-            const updatedContacts = [...prev.contacts];
-            updatedContacts[index] = { ...updatedContacts[index], [field]: value };
-            return { ...prev, contacts: updatedContacts };
-        });
-    };
+            const updatedContacts = [...prev.contacts]
+            updatedContacts[index] = { ...updatedContacts[index], [field]: value }
+            return { ...prev, contacts: updatedContacts }
+        })
+    }
 
     const saveChanges = async () => {
         try {
@@ -52,13 +52,13 @@ const EditAgencyInformation: React.FC = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(editedAgency),
-            });
+            })
 
             navigate(`/agency/${id}`)
         } catch (error) {
-            console.error("Klaida išsaugant agentūros duomenis:", error);
+            console.error("Klaida išsaugant agentūros duomenis:", error)
         }
-    };
+    }
 
 
     return (
@@ -110,7 +110,7 @@ const EditAgencyInformation: React.FC = () => {
             <button onClick={saveChanges}>Išsaugoti</button>
         </div>
     </div>
-    );
-};
+    )
+}
 
-export default EditAgencyInformation;
+export default EditAgencyInformation

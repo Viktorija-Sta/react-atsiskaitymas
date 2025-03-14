@@ -2,21 +2,23 @@ import { Link } from "react-router";
 import { useTravelPageContext } from "../../pages/TravelPageContextProvider";
 import TripItem from "./TripItem";
 import React, { useEffect } from "react";
+import SearchElement from "../SearchElement/SearchElement";
 
 const TripList: React.FC = () => {
-    const { trips, fetchDestinations, fetchAgencies, agencies } = useTravelPageContext();
+    const { trips, fetchDestinations, fetchAgencies, agencies } = useTravelPageContext()
 
-    console.log("Kelionių sąrašas:", trips);
-    console.log("Agentūros sąrašas:", agencies);
+    console.log("Kelionių sąrašas:", trips)
+    console.log("Agentūros sąrašas:", agencies)
 
     useEffect(() => {
-        fetchDestinations();
-        fetchAgencies();
-    }, []);
+        fetchDestinations()
+        fetchAgencies()
+    }, [])
 
     return (
         <div className="trip-list">
             <div className="actions">
+                <SearchElement />
                 <Link to="create/">
                     <button>Pridėti naują kelionę</button>
                 </Link>
@@ -40,7 +42,7 @@ const TripList: React.FC = () => {
                 <p>Atsiprašome, kelionių šiuo metu neturime</p>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default TripList;
+export default TripList

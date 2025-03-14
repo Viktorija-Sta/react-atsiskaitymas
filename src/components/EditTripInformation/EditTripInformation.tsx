@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router"
 import { API_URL } from "../config";
 
 interface Hotel {
-    name: string;
-    price: string;
+    name: string
+    price: string
 }
 
 const EditTripInformation: React.FC = () => {
@@ -28,14 +28,14 @@ const EditTripInformation: React.FC = () => {
     useEffect(() => {
         const fetchTripData = async () => {
             try {
-                const tripRes = await fetch(`${API_URL}/destinations/${id}`);
-                const tripData = await tripRes.json();
+                const tripRes = await fetch(`${API_URL}/destinations/${id}`)
+                const tripData = await tripRes.json()
 
-                const hotelsRes = await fetch(`${API_URL}/hotels?destinationId=${id}`);
-                const hotelsData = await hotelsRes.json();
+                const hotelsRes = await fetch(`${API_URL}/hotels?destinationId=${id}`)
+                const hotelsData = await hotelsRes.json()
 
-                console.log("Kelionės duomenys:", tripData);
-                console.log("Viešbučių duomenys:", hotelsData);
+                console.log("Kelionės duomenys:", tripData)
+                console.log("Viešbučių duomenys:", hotelsData)
 
                 setEditedTrip({
                     title: tripData.title || '',
@@ -46,45 +46,45 @@ const EditTripInformation: React.FC = () => {
                     hotels: hotelsData || [],
                     gallery: Array.isArray(tripData.gallery) ? tripData.gallery : [],
                     agencyId: tripData.agencyId || '',
-                });
+                })
 
             } catch (error) {
-                console.error("Klaida gaunant kelionės duomenis:", error);
+                console.error("Klaida gaunant kelionės duomenis:", error)
             }
-        };
+        }
 
-        fetchTripData();
-    }, [id]);
+        fetchTripData()
+    }, [id])
 
     const removeImage = (index: number) => {
         setEditedTrip((prev) => ({
             ...prev,
             gallery: prev.gallery.filter((_, i) => i !== index),
-        }));
-    };
+        }))
+    }
 
     const addImageUrl = () => {
-        if (!newImageUrl.trim()) return;
-        setEditedTrip((prev) => ({ ...prev, gallery: [...prev.gallery, newImageUrl.trim()] }));
-        setNewImageUrl("");
-    };
+        if (!newImageUrl.trim()) return
+        setEditedTrip((prev) => ({ ...prev, gallery: [...prev.gallery, newImageUrl.trim()] }))
+        setNewImageUrl("")
+    }
 
     const addHotel = () => {
         if (!newHotel.name || !newHotel.price) return;
-        setEditedTrip((prev) => ({ ...prev, hotels: [...prev.hotels, newHotel] }));
-        setNewHotel({ name: "", price: "" });
-    };
+        setEditedTrip((prev) => ({ ...prev, hotels: [...prev.hotels, newHotel] }))
+        setNewHotel({ name: "", price: "" })
+    }
 
     const removeHotel = (index: number) => {
         setEditedTrip((prev) => ({
             ...prev,
             hotels: prev.hotels.filter((_, i) => i !== index),
-        }));
-    };
+        }))
+    }
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setEditedTrip({ ...editedTrip, [e.target.name]: e.target.value });
-    };
+        setEditedTrip({ ...editedTrip, [e.target.name]: e.target.value })
+    }
 
     const submitHandler = (e: React.FormEvent) => {
         e.preventDefault();
@@ -92,7 +92,8 @@ const EditTripInformation: React.FC = () => {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(editedTrip),
-        }).then(() => navigate(`/trip/${id}`));
+        })
+        .then(() => navigate(`/trip/${id}`))
     }
     
     return (
