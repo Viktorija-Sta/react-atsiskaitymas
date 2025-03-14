@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { TravelItem } from "../../pages/travelReducer";
 import { useTravelPageContext } from "../../pages/TravelPageContextProvider";
 import './trip.scss'
+import { Button } from "@mui/material";
 
 interface TripItemProps {
     data: TravelItem
@@ -54,23 +55,26 @@ const TripItem: React.FC<TripItemProps> = ({ data }) => {
 
     return (
         <div className="trip-item">
-                <h3>{title}</h3>
+            <h3>{title}</h3>
+
             <img src={image} alt={title} width={500} />
             <p>{description}</p>
             <p>Kaina: {price}€</p>
+
             {agencyData ? (
                 <p>Organizatorius: {agencyData.name}</p>
             ) : (
                 <p>Organizatorius: Nežinomas</p>
             )}
 
-            <button
+            <Button 
+                variant="contained"
                 onClick={deleteHandler}
                 disabled={isDeleting}
                 className={isDeleting ? "disabled-button" : ""}
             >
                 {isDeleting ? "Šalinama..." : "Šalinti"}
-            </button>
+            </Button>
         </div>
     )
 }

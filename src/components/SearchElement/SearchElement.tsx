@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Select, { MultiValue } from "react-select";
 import { useTravelPageContext } from "../../pages/TravelPageContextProvider";
+import './searchElement.scss'
 
 interface SearchElementProps {
     onFilterChange: (categories: string[], searchTerm: string) => void
@@ -29,13 +30,13 @@ const SearchElement: React.FC<SearchElementProps> = ({ onFilterChange }) => {
     }
 
     return (
-        <div>
+        <div className="search-element">
             <input
                 type="text"
                 placeholder="Ieškoti kelionės..."
                 value={searchTerm}
                 onChange={handleSearchChange}
-                style={{ marginBottom: "1em", padding: "5px", width: "100%" }}
+                // style={{ marginBottom: "1em", padding: "5px", width: "100%" }}
             />
 
             <Select

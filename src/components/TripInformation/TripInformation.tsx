@@ -144,11 +144,11 @@ return (
                     : "Pasirinkite viešbutį, kad matytumėte kainą"}
             </p>
             <p><strong>Viso: {selectedHotel ? `${totalTripCost.toLocaleString()}€` : "---"}</strong></p>
-        </div>
-        <div className="buttons">
             <Button variant="contained" type="submit" onClick={submitHandler} disabled={!selectedHotel || !selectedDates.start}>
                 Siųsti užklausą
             </Button>
+        </div>
+        <div className="button">
             <Link to={`/trip/edit/${trip.id}`}>
                 <Button variant="contained">Redaguoti</Button>
             </Link>
