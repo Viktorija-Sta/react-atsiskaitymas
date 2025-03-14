@@ -1,0 +1,83 @@
+.edit-trip-information {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: rgb(255,255,255);
+    background: linear-gradient(39deg, rgba(255,255,255,0.6834879215358018) 23%, rgba(198,162,245,0.7759248963257178) 85%);
+    
+    .edit-form {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 20px;
+
+        input {
+          
+       }
+        textarea {
+          
+           
+       }
+       button {
+         width: 40%;
+         margin-left: auto;
+         margin-right: auto;
+         margin-bottom: 50px;
+       }
+    }
+
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+
+        .image-container {
+            img{
+                height: 250px;
+            }
+            button {
+
+            }
+        }
+    }
+    .hotel-selection {
+        width: 100%;
+        display: flex;
+        padding: 10px;
+        flex-direction: row;
+        flex-wrap: wrap; 
+
+        ul { 
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            list-style-type: none;
+            padding: 10px;
+            li{
+                border: 2px solid rgba(194, 192, 194, 0.397);
+                margin: 10px;
+                padding: 10px;
+                width: 25%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                
+
+                #delete-button{
+                    margin: 30px;
+                    width: 10%;
+                
+                }
+            }
+        }
+    }
+
+    button{
+        margin-top: 20px;
+        
+    }
+}

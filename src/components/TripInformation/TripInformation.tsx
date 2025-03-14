@@ -91,18 +91,18 @@ return (
     <div className="trip-info">
         
         <h1>{trip.title}</h1>
-        <p>{trip.description}</p>
-        <p>{trip.fullDescription}</p>
+        <p>✨{trip.description}</p>
+        <p>✨{trip.fullDescription}</p>
         <p>Trukmė: {trip.duration}</p>
-        <p>
+        <p className="price">
             <strong>Kaina:</strong> {trip.price}€
         </p>
 
         <div className="image-gallery">
-            <ImageList sx={{ width: 500, height: 450 }} variant="woven" cols={3} gap={8}>
+            <ImageList sx={{ height: 450 }} variant="woven" cols={20} gap={5} >
                 {Array.isArray(trip.gallery) ? (
                     trip.gallery.map((item, index) => (
-                        <ImageListItem key={item} cols={1} rows={1}>
+                        <ImageListItem key={item} cols={5} rows={1}>
                             <img key={index} src={item} alt={`${trip.title} ${index + 1}`}  />
                         </ImageListItem>
                     ))
@@ -116,7 +116,7 @@ return (
             <h2>Pasirinkite viešbutį</h2>
             <Select labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth" value={selectedHotel} onChange={(e) => setSelectedHotel(e.target.value)}>
-               <option value="">Pasirinkite viešbutį</option>
+               <MenuItem value="">Pasirinkite viešbutį</MenuItem>
                 {hotels.map((hotel) => (
                     <MenuItem key={hotel.id} value={hotel.id}>
                         {hotel.name} - {hotel.price}€/naktis
@@ -145,12 +145,14 @@ return (
             </p>
             <p><strong>Viso: {selectedHotel ? `${totalTripCost.toLocaleString()}€` : "---"}</strong></p>
         </div>
+        <div className="buttons">
             <Button variant="contained" type="submit" onClick={submitHandler} disabled={!selectedHotel || !selectedDates.start}>
                 Siųsti užklausą
             </Button>
             <Link to={`/trip/edit/${trip.id}`}>
-            <Button variant="contained">Redaguoti</Button>
-        </Link>
+                <Button variant="contained">Redaguoti</Button>
+            </Link>
+        </div>
 
             {isPopupOpen && (
                 <div className="popup-overlay">

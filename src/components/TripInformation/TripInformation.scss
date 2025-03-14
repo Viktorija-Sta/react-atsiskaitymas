@@ -1,48 +1,49 @@
-
-.trip-info{
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    border-bottom: 1px solid #e0e0e0;
-    flex-direction: column;
-    flex-wrap: wrap;
+body{
+    margin:0;
     
-    
-    Button {
-       width: 50%;
-       
-       margin-top: 20px;
-    }
-    h1 {
-        text-align: center;
-    }
-    p {
-
-    }
-    .image-gallery{
-
-    }
-    .hotel-section{
-        h2{
-
+    .trip-info{
+        display: flex;
+        justify-content: center;
+        padding: 100px;        flex-direction: column;
+        flex-wrap: wrap;
+        background: rgb(255,255,255);
+        background: linear-gradient(39deg, rgba(255,255,255,0.6834879215358018) 23%, rgba(198,162,245,0.7759248963257178) 85%);
+        
+        
+        h1 {
+            text-align: center;
         }
-        select{
-
+        .price{
+            border-bottom: 1px solid #220909;
+            padding: 10px;
+        }
+        .image-gallery{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hotel-section{
+            h2{
+                
+            }
+            select{
+                
+            }
         }
         .date-selection{
             h2{
-
+                
             }
         }
         .total-price{
-            h2{
-
-            }
-            p{
-
-            }
+            padding-left: 200px;
+            margin-top: 10px;   
         }
-    }
+
+        .buttons{
+            display: flex;
+            justify-content: space-between;
+            
+        }
     .popup-overlay {
         position: fixed;
         top: 0;
@@ -78,6 +79,6 @@
 }
 
 
-
+}
 
              

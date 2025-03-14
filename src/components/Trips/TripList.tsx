@@ -3,6 +3,7 @@ import { useTravelPageContext } from "../../pages/TravelPageContextProvider";
 import TripItem from "./TripItem";
 import { Link } from "react-router";
 import SearchElement from "../SearchElement/SearchElement";
+import './trip.scss'
 
 const TripList: React.FC = () => {
     const { trips } = useTravelPageContext()

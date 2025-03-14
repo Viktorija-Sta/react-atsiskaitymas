@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import { API_URL } from "../config";
+import './EditTripInformation.scss'
+import { Button, TextField } from "@mui/material";
 
 interface Hotel {
     name: string
@@ -98,66 +100,68 @@ const EditTripInformation: React.FC = () => {
     
     return (
         <div className="edit-trip-information">
-            <form onSubmit={submitHandler}>
+            <form className="edit-form" onSubmit={submitHandler}>
                 <label htmlFor="title">Miestas/Šalis:</label>
-                <input type="text" name="title" value={editedTrip.title} onChange={changeHandler} placeholder="Pavadinimas" />
+                <TextField id="standard-basic" type="text" name="title" value={editedTrip.title} onChange={changeHandler} placeholder="Pavadinimas" />
 
                 <label htmlFor="description">Aprašymas:</label>
-                <textarea name="description" value={editedTrip.description} onChange={changeHandler} placeholder="Aprašymas" />
+                <TextField id="standard-basic" name="description" value={editedTrip.description} onChange={changeHandler} placeholder="Aprašymas" />
 
                 <label htmlFor="fullDescription">Platesnė informacija:</label>
-                <textarea name="fullDescription" value={editedTrip.fullDescription} onChange={changeHandler} placeholder="Platesnė informacija" />
+                <TextField id="standard-basic" name="fullDescription" value={editedTrip.fullDescription} onChange={changeHandler} placeholder="Platesnė informacija" />
 
                 <label htmlFor="duration">Trukmė:</label>
-                <input type="number" name="duration" value={editedTrip.duration} onChange={changeHandler} placeholder="Trukmė (dienos)" />
+                <TextField id="standard-basic" type="number" name="duration" value={editedTrip.duration} onChange={changeHandler} placeholder="Trukmė (dienos)" />
 
                 <label htmlFor="price">Kaina:</label>
-                <input type="number" name="price" value={editedTrip.price} onChange={changeHandler} placeholder="Kaina (€)" />
+                <TextField id="standard-basic" type="number" name="price" value={editedTrip.price} onChange={changeHandler} placeholder="Kaina (€)" />
 
                 <label htmlFor="gallery">Nuotraukos</label>
-                <textarea value={newImageUrl} onChange={(e) => setNewImageUrl(e.target.value)} placeholder="Įveskite nuorodas, atskirtas kableliais" />
-                <button type="button" onClick={addImageUrl}>Pridėti nuotrauką</button>
+                <TextField id="standard-basic" value={newImageUrl} onChange={(e) => setNewImageUrl(e.target.value)} placeholder="Įveskite nuorodas, atskirtas kableliais" />
+                <Button variant="contained" type="button" onClick={addImageUrl}>Pridėti nuotrauką</Button>
 
                 <div className="gallery">
                     {editedTrip.gallery.map((img, index) => (
                         <div key={index} className="image-container">
-                            <img src={img} alt={`Kelionės nuotrauka ${index}`} width={100} />
-                            <button type="button" onClick={() => removeImage(index)}>Pašalinti</button>
+                            <img src={img} alt={`Kelionės nuotrauka ${index}`} width={300} />
+                            <Button variant="contained" type="button" onClick={() => removeImage(index)}>Pašalinti</Button>
                         </div>
                     ))}
                 </div>
 
                 <label htmlFor="hotel">Pridėkite naują Viešbutį:</label>
-                <input type="text" id="hotel" placeholder="Viešbučio pavadinimas"value={newHotel.name} 
+                <TextField id="standard-basic" type="text" name="hotel" placeholder="Viešbučio pavadinimas"value={newHotel.name} 
                     onChange={(e) => setNewHotel({ ...newHotel, name: e.target.value })}
                 />
 
-                <input type="number" id="hotel-price" placeholder="Kaina (€)"value={newHotel.price} 
+                <TextField id="standard-basic" type="number" name="hotel-price" placeholder="Kaina (€)"value={newHotel.price} 
                     onChange={(e) => setNewHotel({ ...newHotel, price: e.target.value })}
                 />
-                <button type="button" onClick={addHotel}>Pridėti viešbutį</button>
+                <Button variant="contained" type="button" onClick={addHotel}>Pridėti viešbutį</Button>
 
-                <div className="hotel-selection">
-                <div className="hotel-selection">
+                
                     <h2>Viešbučių sąrašas</h2>
+                <div className="hotel-selection">
                     {editedTrip.hotels.length > 0 ? (
                         <ul>
                             {editedTrip.hotels.map((hotel, index) => (
                                 <li key={index}>
                                     {hotel.name} - {hotel.price}€/naktis
-                                    <button type="button" onClick={() => removeHotel(index)}>❌</button>
+                                    <div className="buttons">
+                                        <Button id="delete-button" variant="contained" type="button" onClick={() => removeHotel(index)}>❌</Button>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
                     ) : (
                         <p>Viešbučių nėra</p>
                     )}
-                </div>
+                
                 </div>
 
-                <button type="submit">Išsaugoti</button>
+                <Button variant="contained" type="submit">Išsaugoti</Button>
+                <Button variant="contained" onClick={() => navigate(-1)}>Atšaukti</Button>
             </form>
-            <button onClick={() => navigate(-1)}>Atšaukti</button>
         </div>
     )
 }
