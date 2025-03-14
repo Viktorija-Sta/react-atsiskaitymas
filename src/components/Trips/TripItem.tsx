@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TravelItem } from "../../pages/travelReducer";
 import { useTravelPageContext } from "../../pages/TravelPageContextProvider";
+import './trip.scss'
 
 interface TripItemProps {
     data: TravelItem

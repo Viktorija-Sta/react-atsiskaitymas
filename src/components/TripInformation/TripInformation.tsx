@@ -102,7 +102,7 @@ return (
             <ImageList sx={{ height: 450 }} variant="woven" cols={20} gap={5} >
                 {Array.isArray(trip.gallery) ? (
                     trip.gallery.map((item, index) => (
-                        <ImageListItem key={item} cols={5} rows={1}>
+                        <ImageListItem key={item} cols={4} rows={1}>
                             <img key={index} src={item} alt={`${trip.title} ${index + 1}`}  />
                         </ImageListItem>
                     ))

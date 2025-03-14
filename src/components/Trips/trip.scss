@@ -13,8 +13,24 @@
         }
     }
     .trips{
+
         a{
+            display: block;
+            width: 80%;
+            text-decoration: none;
+            color: black;
+
             .trip-item{
+                
+                border: 2px solid rgba(194, 192, 194, 0.397);
+                border-radius: 10px;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                padding: 20px;
+                margin: 20px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+
                 h3{
 
                 }
