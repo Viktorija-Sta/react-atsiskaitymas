@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useReducer, useRef } from "react";
+import { createContext, useCallback, useContext, useEffect, useReducer } from "react";
 import { AgenciesItem, HotelItem, initialState, TravelItem, TravelPageActionType, travelPageReducer, TravelPageState } from "./travelReducer";
 import { API_URL } from "../components/config";
 
@@ -23,7 +23,7 @@ type TravelPageContextProviderProps = {
 
 export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps> = ({ children }) => {
     const [travelPageState, dispatch] = useReducer(travelPageReducer, initialState)
-    const isFirstLoad = useRef(true)
+   
 
     
     const fetchDestinations = useCallback(async () => {
@@ -147,10 +147,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
     }, [])
 
     useEffect(() => {
-        if (isFirstLoad.current) {
-            isFirstLoad.current = false
-            fetchDestinations()
-        }
+        fetchDestinations()
     }, [fetchDestinations])
 
    

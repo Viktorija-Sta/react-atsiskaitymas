@@ -1,31 +1,32 @@
-import { useState, useMemo } from "react";
-import Select from "react-select";
+import { useState } from "react";
+import Select, { MultiValue } from "react-select";
 import { useTravelPageContext } from "../../pages/TravelPageContextProvider";
-import TripItem from "../Trips/TripItem";
 
-const SearchElement = () => {
-    const { trips } = useTravelPageContext();
+interface SearchElementProps {
+    onFilterChange: (categories: string[], searchTerm: string) => void
+}
 
-    // Unikalios kategorijos pasirinkimui
-    const categories = useMemo(() => {
-        return [...new Set(trips.map(trip => trip.category))].map(category => ({
-            value: category,
-            label: category
-        }));
-    }, [trips]);
+const SearchElement: React.FC<SearchElementProps> = ({ onFilterChange }) => {
+    const { trips } = useTravelPageContext()
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+    const [searchTerm, setSearchTerm] = useState("")
 
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-    const [searchTerm, setSearchTerm] = useState("");
+    const categories = Array.from(new Set(trips.map((trip) => trip.category))).map((category) => ({
+        value: category,
+        label: category,
+    }))
 
-    // Automatinė filtracija be `useEffect`
-    const filteredDestinations = useMemo(() => {
-        return trips.filter(trip => {
-            const matchesCategory =
-                selectedCategories.length === 0 || selectedCategories.includes(trip.category);
-            const matchesSearch = trip.title.toLowerCase().includes(searchTerm.toLowerCase());
-            return matchesCategory && matchesSearch;
-        });
-    }, [trips, selectedCategories, searchTerm]);
+    const handleCategoryChange = (newValue: MultiValue<{ value: string; label: string }>) => {
+        const newCategories = newValue ? newValue.map((option: { value: string; label: string }) => option.value) : []
+        setSelectedCategories(newCategories)
+        onFilterChange(newCategories, searchTerm)
+    }
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newSearchTerm = e.target.value
+        setSearchTerm(newSearchTerm)
+        onFilterChange(selectedCategories, newSearchTerm)
+    }
 
     return (
         <div>
@@ -33,7 +34,7 @@ const SearchElement = () => {
                 type="text"
                 placeholder="Ieškoti kelionės..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={handleSearchChange}
                 style={{ marginBottom: "1em", padding: "5px", width: "100%" }}
             />
 
@@ -41,22 +42,10 @@ const SearchElement = () => {
                 options={categories}
                 isMulti
                 placeholder="Pasirinkite kategorijas"
-                onChange={(selectedOptions) =>
-                    setSelectedCategories(selectedOptions.map(option => option.value))
-                }
+                onChange={handleCategoryChange}
             />
-
-            <div style={{ marginTop: "1em" }}>
-                {filteredDestinations.length > 0 ? (
-                    filteredDestinations.map(trip => (
-                        <TripItem key={trip.id} data={trip} />
-                    ))
-                ) : (
-                    <p>Kelionė nerasta</p>
-                )}
-            </div>
         </div>
-    );
-};
+    )
+}
 
-export default SearchElement;
+export default SearchElement

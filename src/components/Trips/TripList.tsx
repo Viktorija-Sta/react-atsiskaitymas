@@ -1,17 +1,24 @@
-import { Link } from "react-router";
+import { useState, useEffect } from "react";
 import { useTravelPageContext } from "../../pages/TravelPageContextProvider";
 import TripItem from "./TripItem";
-import React, { useEffect } from "react";
+import { Link } from "react-router";
+import SearchElement from "../SearchElement/SearchElement";
 
 const TripList: React.FC = () => {
-    const { trips,  fetchAgencies, agencies } = useTravelPageContext()
-
-    console.log("Kelionių sąrašas:", trips)
-    console.log("Agentūros sąrašas:", agencies)
+    const { trips } = useTravelPageContext()
+    const [filteredTrips, setFilteredTrips] = useState(trips)
 
     useEffect(() => {
-        fetchAgencies()
-    }, [])
+        setFilteredTrips(trips)
+    }, [trips])
+
+    const handleFilterChange = (categories: string[], searchTerm: string) => {
+        const newFilteredTrips = trips.filter(trip =>
+            (categories.length === 0 || categories.includes(trip.category)) &&
+            trip.title.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        setFilteredTrips(newFilteredTrips)
+    }
 
     return (
         <div className="trip-list">
@@ -19,17 +26,16 @@ const TripList: React.FC = () => {
                 <Link to="create/">
                     <button>Pridėti naują kelionę</button>
                 </Link>
-
-                <Link to="/agencies">
-                    <button>Kelionių organizatoriai</button>
-                </Link>
+                <Link to="/agencies">Kelionių organizatoriai</Link>
             </div>
+
+            <SearchElement onFilterChange={handleFilterChange} />
 
             <h2>Naujausi kelionių pasiūlymai</h2>
 
-            {trips.length > 0 ? (
+            {filteredTrips.length > 0 ? (
                 <div className="trips">
-                    {trips.map((trip) => (
+                    {filteredTrips.map((trip) => (
                         <Link key={trip.id} to={`/trip/${trip.id}`}>
                             <TripItem data={trip} />
                         </Link>

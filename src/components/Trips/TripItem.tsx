@@ -24,11 +24,12 @@ const TripItem: React.FC<TripItemProps> = ({ data }) => {
     }, [agencies, fetchAgencies])
 
     useEffect(() => {
-        if (agencies && agencyId) {
-            const foundAgency = agencies.find((agencyItem) => Number(agencyItem.id) === Number(agencyId))
+        if (agencyId && agencies.length > 0) {
+            const foundAgency = agencies.find(agency => agency.id === agencyId)
             setAgencyData(foundAgency || null)
         }
     }, [agencies, agencyId])
+    
 
     console.log("Rasta agentūra:", agencyData)
 
