@@ -1,6 +1,9 @@
 import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { API_URL } from "../config";
+import './TripInformation.scss'
+import { Button, CircularProgress, ImageList, ImageListItem, MenuItem, Select } from "@mui/material";
+
 
 interface Trip {
     id: string
@@ -64,7 +67,7 @@ const TripInformation: React.FC = () => {
     
 
 
-    if (!trip) return <p>Kraunama...</p>
+    if (!trip) return <CircularProgress />
     if (!trip.title) return <p>Klaida: Kelionės duomenys nepasiekiami</p>
 
     const tripDuration = Number(trip.duration.match(/\d+/)?.[0]) || 1
@@ -86,9 +89,7 @@ const TripInformation: React.FC = () => {
 
 return (
     <div className="trip-info">
-        <Link to={`/trip/edit/${trip.id}`}>
-            <button>Redaguoti</button>
-        </Link>
+        
         <h1>{trip.title}</h1>
         <p>{trip.description}</p>
         <p>{trip.fullDescription}</p>
@@ -98,25 +99,30 @@ return (
         </p>
 
         <div className="image-gallery">
-    {Array.isArray(trip.gallery) ? (
-        trip.gallery.map((img, index) => (
-            <img key={index} src={img} alt={`${trip.title} ${index + 1}`} width={400} />
-        ))
-    ) : (
-        <p>Galerijos nuotraukos nerastos.</p>
-    )}
-</div>
+            <ImageList sx={{ width: 500, height: 450 }} variant="woven" cols={3} gap={8}>
+                {Array.isArray(trip.gallery) ? (
+                    trip.gallery.map((item, index) => (
+                        <ImageListItem key={item} cols={1} rows={1}>
+                            <img key={index} src={item} alt={`${trip.title} ${index + 1}`}  />
+                        </ImageListItem>
+                    ))
+                ) : (
+                    <p>Galerijos nuotraukos nerastos.</p>
+                )}
+            </ImageList>
+        </div>
 
         <div className="hotel-selection">
             <h2>Pasirinkite viešbutį</h2>
-            <select value={selectedHotel} onChange={(e) => setSelectedHotel(e.target.value)}>
-                <option value="">Pasirinkite viešbutį</option>
+            <Select labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth" value={selectedHotel} onChange={(e) => setSelectedHotel(e.target.value)}>
+               <option value="">Pasirinkite viešbutį</option>
                 {hotels.map((hotel) => (
-                    <option key={hotel.id} value={hotel.id}>
+                    <MenuItem key={hotel.id} value={hotel.id}>
                         {hotel.name} - {hotel.price}€/naktis
-                    </option>
+                    </MenuItem>
                 ))}
-            </select>
+            </Select>
         </div>
 
         <div className="date-selection">
@@ -139,54 +145,23 @@ return (
             </p>
             <p><strong>Viso: {selectedHotel ? `${totalTripCost.toLocaleString()}€` : "---"}</strong></p>
         </div>
-            <button type="submit" onClick={submitHandler} disabled={!selectedHotel || !selectedDates.start}>
+            <Button variant="contained" type="submit" onClick={submitHandler} disabled={!selectedHotel || !selectedDates.start}>
                 Siųsti užklausą
-            </button>
+            </Button>
+            <Link to={`/trip/edit/${trip.id}`}>
+            <Button variant="contained">Redaguoti</Button>
+        </Link>
 
             {isPopupOpen && (
                 <div className="popup-overlay">
                     <div className="popup-content">
                         <h2>Jūsų užklausa išsiųsta!</h2>
                         <p>Dėkojame už jūsų užklausą. Netrukus su jumis susisieksime.</p>
-                        <button onClick={closePopup}>Uždaryti</button>
+                        <Button variant="contained" onClick={closePopup}>Uždaryti</Button>
                     </div>
                 </div>
             )}
 
-
-            <style>
-                {`
-                    .popup-overlay {
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(0, 0, 0, 0.5);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                    .popup-content {
-                        background: white;
-                        padding: 20px;
-                        border-radius: 8px;
-                        text-align: center;
-                    }
-                    .popup-content button {
-                        margin-top: 10px;
-                        padding: 8px 16px;
-                        background: #007bff;
-                        color: white;
-                        border: none;
-                        border-radius: 4px;
-                        cursor: pointer;
-                    }
-                    .popup-content button:hover {
-                        background: #0056b3;
-                    }
-                `}
-            </style>
     </div>
 )}
 
