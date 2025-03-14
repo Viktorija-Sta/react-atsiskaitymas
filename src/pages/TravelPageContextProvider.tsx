@@ -44,6 +44,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
                 agenciesRes.json(),
             ])
             console.log("Gauti kelionių duomenys:", destinations);
+            
 
             dispatch({ type: TravelPageActionType.SET_DESTINATIONS, payload: destinations })
             dispatch({ type: TravelPageActionType.ADD_HOTELS, payload: hotels })
