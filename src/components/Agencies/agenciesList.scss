@@ -1,0 +1,30 @@
+
+.agencies-list{
+    background: rgb(255,255,255);
+    background: linear-gradient(39deg, rgba(255,255,255,0.6834879215358018) 23%, #c7a3f5c6 85%);
+    padding: 20px 50px ;
+
+    .agencies{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 20px;
+
+        .agency-wrapper{
+            width: 60%;
+            border: 1px solid rgba(151, 151, 151, 0.411);
+            border-radius: 8px;
+            padding: 20px;
+
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+}
+
+
+
+
+

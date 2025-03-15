@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router";
 import { API_URL } from "../config";
 import { AgenciesItem, TravelItem } from "../../pages/travelReducer";
 import TripItem from "../Trips/TripItem";
+import { Button } from "@mui/material";
+import './agencyPage.scss'
 
 const AgencyPage: React.FC = () => {
     const { id } = useParams() as { id: string }
@@ -57,7 +59,11 @@ const AgencyPage: React.FC = () => {
 
     return (
         <div className="agency-page">
-            {agency && <Link to={`/agencies/edit/${agency.id}`}>Redaguoti agentūrą</Link>}
+            {agency && 
+            <Link to={`/agencies/edit/${agency.id}`}>
+                <Button variant="outlined"> Redaguoti agentūrą</Button>
+            </Link>}
+
             {agency && (
                 <div className="agency-info">
                     <h2>"{agency.name}"</h2>
@@ -70,15 +76,37 @@ const AgencyPage: React.FC = () => {
             )}
 
             <h3>Agentūros kelonių pasiūlymai</h3>
-            {trips.length > 0 ? (
-                <div className="trips">
-                    {trips.map((trip) => (
-                        <TripItem key={trip.id} data={trip} />
-                    ))}
-                </div>
-            ) : (
-                <p>Ši agentūra dar neturi kelionių</p>
-            )}
+                {trips.length > 0 ? (
+                    trips.map((trip) => (
+                        <div className="trips" style={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            maxWidth: "80%",
+                            padding: "20px",
+                            border: "1px solid rgba(194, 192, 194, 0.397)",
+                            borderRadius: '8px',
+                            margin: "20px",
+                            boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+                            
+                        }}>
+                            <Link  
+                            to={`/trip/${trip.id}`} key={trip.id} className="trip-wrapper"
+                            style={{
+                                textDecoration: "none", 
+                                color: "black", 
+                               display: "flex",
+                               flexDirection: "column",
+                               flexWrap: "wrap",
+                               width: "100%"
+                                
+                            }}>
+                                <TripItem key={trip.id} data={trip} />
+                            </Link>
+            </div>
+                        ))
+                    ) : (
+                    <p>Ši agentūra dar neturi kelionių</p>
+                )}
         </div>
     )
 }
