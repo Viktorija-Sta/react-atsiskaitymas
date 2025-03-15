@@ -36,7 +36,7 @@ const SearchElement: React.FC<SearchElementProps> = ({ onFilterChange }) => {
                 placeholder="Ieškoti kelionės..."
                 value={searchTerm}
                 onChange={handleSearchChange}
-                // style={{ marginBottom: "1em", padding: "5px", width: "100%" }}
+                
             />
 
             <Select

@@ -114,8 +114,7 @@ return (
 
         <div className="hotel-selection">
             <h2>Pasirinkite viešbutį</h2>
-            <Select labelId="demo-simple-select-autowidth-label"
-          id="demo-simple-select-autowidth" value={selectedHotel} onChange={(e) => setSelectedHotel(e.target.value)}>
+            <Select fullWidth value={selectedHotel} onChange={(e) => setSelectedHotel(e.target.value)}>
                <MenuItem value="">Pasirinkite viešbutį</MenuItem>
                 {hotels.map((hotel) => (
                     <MenuItem key={hotel.id} value={hotel.id}>
