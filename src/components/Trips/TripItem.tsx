@@ -57,7 +57,7 @@ const TripItem: React.FC<TripItemProps> = ({ data }) => {
         <div className="trip-item">
             <h3>{title}</h3>
 
-            <img src={image} alt={title} width={500} />
+            <img src={image} alt={title}  />
             <p>{description}</p>
             <p>Kaina: {price}€</p>
 

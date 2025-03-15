@@ -148,7 +148,7 @@ const EditTripInformation: React.FC = () => {
                                 <li key={index}>
                                     {hotel.name} - {hotel.price}€/naktis
                                     <div className="buttons">
-                                        <Button id="delete-button" variant="contained" type="button" onClick={() => removeHotel(index)}>❌</Button>
+                                        <Button id="delete-button" variant="contained" type="button" onClick={() => removeHotel(index)}>Pašalinti</Button>
                                     </div>
                                 </li>
                             ))}

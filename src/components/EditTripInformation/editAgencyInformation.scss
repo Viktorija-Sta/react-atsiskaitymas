@@ -1,0 +1,25 @@
+.edit-agency{
+    padding: 50px;
+    background: rgb(255,255,255);
+    background: linear-gradient(39deg, rgba(255,255,255,0.6834879215358018) 23%, rgba(198,162,245,0.7759248963257178) 85%);
+    
+   .form {
+    width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+
+        div {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 20px;
+
+        }
+        button {
+            width: 50%;
+            margin: 30px;
+        }
+    }
+}
