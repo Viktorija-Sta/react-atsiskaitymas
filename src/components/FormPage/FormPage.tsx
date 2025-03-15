@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useTravelPageContext } from "../../pages/TravelPageContextProvider";
 import { AgenciesItem, HotelItem, TravelItem } from "../../pages/travelReducer";
+import './formPage.scss'
+import { Button, MenuItem, Select, TextField } from "@mui/material";
 
 const FormPage: React.FC = () => {
     const { addItem, addHotel, trips, addAgency } = useTravelPageContext()
@@ -87,39 +89,47 @@ const FormPage: React.FC = () => {
     }
 
     return (
-        <>
+        
+        <div className="create-page">
             <h2>Pridėti naują kelionės kryptį</h2>
             <form onSubmit={submitHandler}>
-                <input type="text" placeholder="Miestas, Šalis" value={title} onChange={(e) => setTitle(e.target.value)} required />
-                <input type="text" placeholder="Aprašymas" value={description} onChange={(e) => setDescription(e.target.value)} required />
-                <input type="number" placeholder="Trukmė (dienomis)" value={duration} onChange={(e) => setDuration(e.target.value)} required />
-                <textarea placeholder="Platesnė informacija" value={fullDescription} onChange={(e) => setFullDescription(e.target.value)} required />
-                <input type="text" placeholder="Titulinė nuotrauka" value={image} onChange={(e) => setImage(e.target.value)} required />
-                <label>Galerijos nuotraukos (nuorodos, atskirkite kableliais)</label>
-                <textarea value={galleryLinks} onChange={(e) => setGalleryLinks(e.target.value)} placeholder="Įveskite nuorodas, atskirtas kableliais" />
-                <select value={category} onChange={(e) => setCategory(e.target.value)} required>
-                    <option value="">Pasirinkite kategoriją</option>
-                    <option value="Azija">Azija</option>
-                    <option value="Afrika">Afrika</option>
-                    <option value="Europa">Europa</option>
-                    <option value="JAV">JAV</option>
-                    <option value="Kita">Kita</option>
-                </select>
-                <input type="number" placeholder="Kaina" value={price} onChange={(e) => setPrice(e.target.value)} required />
+                <TextField id="standard-basic" type="text" placeholder="Miestas, Šalis" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                <TextField id="standard-basic" type="text" placeholder="Aprašymas" value={description} onChange={(e) => setDescription(e.target.value)} required />
+                <TextField id="standard-basic" type="number" placeholder="Trukmė (dienomis)" value={duration} onChange={(e) => setDuration(e.target.value)} required />
+                <TextField id="standard-basic" placeholder="Platesnė informacija" value={fullDescription} onChange={(e) => setFullDescription(e.target.value)} required />
+                <TextField id="standard-basic" type="text" placeholder="Titulinė nuotrauka" value={image} onChange={(e) => setImage(e.target.value)} required />
+                <TextField id="standard-basic">Galerijos nuotraukos (nuorodos, atskirkite kableliais)</TextField>
+                <TextField id="standard-basic" value={galleryLinks} onChange={(e) => setGalleryLinks(e.target.value)} placeholder="Įveskite nuorodas, atskirtas kableliais" />
+
+                <div className="select-element">
+                    <p>Pasirinkite kategoriją</p>
+                    <Select fullWidth value={category} onChange={(e) => setCategory(e.target.value)} required>
+                        <MenuItem value=""></MenuItem>
+                        <MenuItem value="Azija">Azija</MenuItem>
+                        <MenuItem value="Afrika">Afrika</MenuItem>
+                        <MenuItem value="Europa">Europa</MenuItem>
+                        <MenuItem value="JAV">JAV</MenuItem>
+                        <MenuItem value="Kita">Kita</MenuItem>
+                        
+                    </Select>
+                </div>
+
+                <TextField id="standard-basic" type="number" placeholder="Kaina" value={price} onChange={(e) => setPrice(e.target.value)} required />
 
                 <h3>Kelionių organizatorius</h3>
-                <input type="text" name="name" placeholder="Pavadinimas" value={agency.name} onChange={agencyChangeHandler} required />
-                <input type="text" name="location" placeholder="Lokacija" value={agency.location} onChange={agencyChangeHandler} required />
-                <input type="email" name="email" placeholder="El. paštas" value={agency.email} onChange={agencyChangeHandler} required />
-                <input type="tel" name="phone" placeholder="Telefonas" value={agency.phone} onChange={agencyChangeHandler} required />
+                <TextField id="standard-basic" type="text" name="name" placeholder="Pavadinimas" value={agency.name} onChange={agencyChangeHandler} required />
+                <TextField id="standard-basic" type="text" name="location" placeholder="Lokacija" value={agency.location} onChange={agencyChangeHandler} required />
+                <TextField id="standard-basic" type="email" name="email" placeholder="El. paštas" value={agency.email} onChange={agencyChangeHandler} required />
+                <TextField id="standard-basic" type="tel" name="phone" placeholder="Telefonas" value={agency.phone} onChange={agencyChangeHandler} required />
 
 
-                <input type="text" placeholder="Viešbučio pavadinimas" value={hotel} onChange={(e) => setHotel(e.target.value)} required />
-                <input type="number" placeholder="Viešbučio kaina (€/nakčiai)" value={hotelPrice} onChange={(e) => setHotelPrice(e.target.value)} required />
+                <TextField id="standard-basic" type="text" placeholder="Viešbučio pavadinimas" value={hotel} onChange={(e) => setHotel(e.target.value)} required />
+                <TextField id="standard-basic" type="number" placeholder="Viešbučio kaina (€/nakčiai)" value={hotelPrice} onChange={(e) => setHotelPrice(e.target.value)} required />
 
-                <button type="submit">Pridėti naują kelionę</button>
+                <Button variant="contained" type="submit">Pridėti naują kelionę</Button>
             </form>
-        </>
+        </div>
+        
     )
 }
 

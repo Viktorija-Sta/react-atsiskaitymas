@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import { API_URL } from "../config";
+import './editAgencyInformation.scss'
+import { Button, TextField } from "@mui/material";
 
 const EditAgencyInformation: React.FC = () => {
     const { id } = useParams()
@@ -63,53 +65,57 @@ const EditAgencyInformation: React.FC = () => {
 
     return (
         <div className="edit-agency">
-        <h2>Redaguoti agentūros informaciją</h2>
+            <h2>Redaguoti agentūros informaciją</h2>
 
-        <div className="form">
-            <label>
-                Pavadinimas:
-                <input
-                    type="text"
-                    value={editedAgency.name}
-                    onChange={(e) => setEditedAgency((prev) => ({ ...prev, name: e.target.value }))}
-                />
-            </label>
+            <div className="form">
+                <label>
+                    Pavadinimas:
+                    <TextField 
+                        id="standard-basic"
+                        type="text"
+                        value={editedAgency.name}
+                        onChange={(e) => setEditedAgency((prev) => ({ ...prev, name: e.target.value }))}
+                    />
+                </label>
 
-            <label>
-                Lokacija:
-                <input
-                    type="text"
-                    value={editedAgency.location}
-                    onChange={(e) => setEditedAgency((prev) => ({ ...prev, location: e.target.value }))}
-                />
-            </label>
+                <label>
+                    Lokacija:
+                    <TextField
+                        id="standard-basic"
+                        type="text"
+                        value={editedAgency.location}
+                        onChange={(e) => setEditedAgency((prev) => ({ ...prev, location: e.target.value }))}
+                    />
+                </label>
 
-            <h3>Kontaktai:</h3>
-            {editedAgency.contacts.map((contact, index) => (
-                <div key={index}>
-                    <label>
-                        El. paštas:
-                        <input
-                            type="email"
-                            value={contact.email}
-                            onChange={(e) => contactChangeHandler(index, "email", e.target.value)}
-                        />
-                    </label>
+                <h3>Kontaktai:</h3>
+                {editedAgency.contacts.map((contact, index) => (
+                    <div key={index}>
+                        <label>
+                            El. paštas:
+                            <TextField 
+                                id="standard-basic"
+                                type="email"
+                                value={contact.email}
+                                onChange={(e) => contactChangeHandler(index, "email", e.target.value)}
+                            />
+                        </label>
 
-                    <label>
-                        Telefonas:
-                        <input
-                            type="tel"
-                            value={contact.phone}
-                            onChange={(e) => contactChangeHandler(index, "phone", e.target.value)}
-                        />
-                    </label>
-                </div>
-            ))}
+                        <label>
+                            Telefonas:
+                            <TextField 
+                                id="standard-basic"
+                                type="tel"
+                                value={contact.phone}
+                                onChange={(e) => contactChangeHandler(index, "phone", e.target.value)}
+                            />
+                        </label>
+                    </div>
+                ))}
 
-            <button onClick={saveChanges}>Išsaugoti</button>
+                <Button variant="contained" onClick={saveChanges}>Išsaugoti</Button>
+            </div>
         </div>
-    </div>
     )
 }
 

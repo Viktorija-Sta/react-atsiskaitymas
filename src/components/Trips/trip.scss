@@ -1,47 +1,53 @@
 .trip-list{
     background: rgb(255,255,255);
-    background: linear-gradient(39deg, rgba(255,255,255,0.6834879215358018) 23%, rgba(198,162,245,0.7759248963257178) 85%);
+    background: linear-gradient(39deg, rgba(255,255,255,0.6834879215358018) 23%, #c7a3f5c6 85%);
+    padding: 20px 50px ;     
     
     .actions{
+        display: flex;
+        flex-wrap: wrap;
         a{
-            button{}
-        }
-    }
-    div{
-        input{
-
-        }
-    }
-    .trips{
-
-        a{
-            display: block;
-            width: 80%;
             text-decoration: none;
             color: black;
+            
+            button{
+                margin: 30px;
+            }
+        }
+    }
+   
+    .trips{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        a{
+            text-decoration: none;
+            color: black;
+            margin-left: auto;
+            margin-right: auto;
 
             .trip-item{
-                
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                justify-content: space-between;
+                align-items: center;
                 border: 2px solid rgba(194, 192, 194, 0.397);
                 border-radius: 10px;
                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
                 padding: 20px;
                 margin: 20px;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-
-                h3{
-
-                }
+                gap: 20px;
+                
+               
                 img{
-
+                    width: 300px;
+                    height: 150px;
+                    border-radius: 8px;
                 }
-                p{
 
-                }
                 button{
-
+                    width: 25%;
                 }
             }
         }

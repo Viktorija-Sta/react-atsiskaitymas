@@ -114,8 +114,7 @@ return (
 
         <div className="hotel-selection">
             <h2>Pasirinkite viešbutį</h2>
-            <Select labelId="demo-simple-select-autowidth-label"
-          id="demo-simple-select-autowidth" value={selectedHotel} onChange={(e) => setSelectedHotel(e.target.value)}>
+            <Select fullWidth value={selectedHotel} onChange={(e) => setSelectedHotel(e.target.value)}>
                <MenuItem value="">Pasirinkite viešbutį</MenuItem>
                 {hotels.map((hotel) => (
                     <MenuItem key={hotel.id} value={hotel.id}>
@@ -144,11 +143,11 @@ return (
                     : "Pasirinkite viešbutį, kad matytumėte kainą"}
             </p>
             <p><strong>Viso: {selectedHotel ? `${totalTripCost.toLocaleString()}€` : "---"}</strong></p>
-        </div>
-        <div className="buttons">
             <Button variant="contained" type="submit" onClick={submitHandler} disabled={!selectedHotel || !selectedDates.start}>
                 Siųsti užklausą
             </Button>
+        </div>
+        <div className="button">
             <Link to={`/trip/edit/${trip.id}`}>
                 <Button variant="contained">Redaguoti</Button>
             </Link>

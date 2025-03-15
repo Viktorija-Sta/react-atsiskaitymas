@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { API_URL } from "../config"
 import AgencyItem from "./AgencyItem"
 import { Link } from "react-router"
+import './agenciesList.scss'
 
 interface Agency {
     id: string
@@ -80,6 +81,7 @@ const AgenciesList: React.FC = () => {
                             </Link>
                             <p>Kelionių paketų: {agencyTripCounts[agency.id] || 0}</p>
                         </div>
+                        
                     ))}
                 </div>
             ) : (
