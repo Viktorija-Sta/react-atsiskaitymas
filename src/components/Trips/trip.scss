@@ -9,25 +9,42 @@
         a{
             text-decoration: none;
             color: black;
+
+            @media (max-width: 650px) {
+                width: 96%;
+                display: flex;
+                flex-direction: column;
+            } 
             
             button{
                 margin: 30px;
+                
             }
         }
+        
+        
     }
    
     .trips{
-        width: 100%;
+        max-width: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr;
 
+        @media (max-width: 1056px) {
+            display: flex;
+            flex-direction: column;
+        }
+        
+
         a{
+            width: 100%;
             text-decoration: none;
             color: black;
             margin-left: auto;
             margin-right: auto;
 
             .trip-item{
+                width: 80%;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 justify-content: space-between;
@@ -39,13 +56,32 @@
                 margin: 20px;
                 gap: 20px;
                 
+                @media (max-width: 650px) {
+                    width: 80%;
+                    display: flex;
+                    flex-direction: column;
+                }
                
                 img{
                     width: 300px;
                     height: 150px;
                     border-radius: 8px;
+
+                    @media (max-width: 450px) {
+                        max-width: 100%;
+                        max-height: 150px;
+                        display: flex;
+                        flex-direction: column;
+                    }
+                    @media (max-width: 350px) {
+                        
+                        max-height: 100px;
+                        ;
+                    }
                 }
 
+                 
+                
                 button{
                     width: 25%;
                 }

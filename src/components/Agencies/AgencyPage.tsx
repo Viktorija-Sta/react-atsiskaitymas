@@ -100,7 +100,7 @@ const AgencyPage: React.FC = () => {
                                width: "100%"
                                 
                             }}>
-                                <TripItem key={trip.id} data={trip} />
+                                <TripItem  key={trip.id} data={trip} />
                             </Link>
             </div>
                         ))

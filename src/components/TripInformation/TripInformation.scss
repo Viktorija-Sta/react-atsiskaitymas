@@ -21,13 +21,23 @@ body{
         .image-gallery{
             margin-left: auto;
             margin-right: auto;
+
+            @media (max-width: 770px) {
+                display: flex;
+                flex-wrap: wrap;
+            }
         }
         
         .hotel-selection{
             width: 50%;
+
+            @media (max-width: 770px) {
+                width: 100%;
+            }
         }
         
         .total-price{
+            width: 50%;
             padding: 20px;
             margin-top: 10px;  
             border: 2px solid #61616134;
