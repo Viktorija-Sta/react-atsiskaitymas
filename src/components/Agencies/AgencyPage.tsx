@@ -94,10 +94,10 @@ const AgencyPage: React.FC = () => {
                             style={{
                                 textDecoration: "none", 
                                 color: "black", 
-                               display: "flex",
-                               flexDirection: "column",
-                               flexWrap: "wrap",
-                               width: "100%"
+                                display: "flex",
+                                flexDirection: "column",
+                                flexWrap: "wrap",
+                                width: "100%"
                                 
                             }}>
                                 <TripItem  key={trip.id} data={trip} />
