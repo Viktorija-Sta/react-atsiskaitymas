@@ -71,7 +71,7 @@ const AgenciesList: React.FC = () => {
     return (
         <div className="agencies-list">
             
-            <h2>Visos</h2>
+            <h2>Visos agentūros:</h2>
             {agencies.length > 0 ? (
                 <div className="agencies">
                     {agencies.map((agency) => (
