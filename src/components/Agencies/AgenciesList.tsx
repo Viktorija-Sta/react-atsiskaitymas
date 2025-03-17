@@ -13,8 +13,8 @@ interface Agency {
         {
         email: string
         phone: string
-    }
-]
+        }
+    ]
 }
 
 const AgenciesList: React.FC = () => {
@@ -25,6 +25,7 @@ const AgenciesList: React.FC = () => {
     
 
     useEffect(() => {
+        // Užklausa agentūrų duomenims gauti
         const fetchAgencies = async () => {
             try {
                 const res = await fetch(`${API_URL}/agencies`)
@@ -39,6 +40,7 @@ const AgenciesList: React.FC = () => {
             }
         }
 
+        // Užklausa agentūrų kelionių skaičiui gauti
         const fetchDestinationsAgencies = async () => {
             try {
                 const res = await fetch(`${API_URL}/destinationsAgencies`)
@@ -56,6 +58,7 @@ const AgenciesList: React.FC = () => {
             }
         }
 
+        // Gauna visas reikalingas užklausas vienu metu
         const fetchData = async () => {
             setLoading(true)
             await Promise.all([fetchAgencies(), fetchDestinationsAgencies()])

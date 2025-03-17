@@ -36,6 +36,7 @@ const TripInformation: React.FC = () => {
 
     const [isPopupOpen, setIsPopupOpen] = useState(false)
 
+     // Užklausa kelionės duomenims gauti
     useEffect(() => {
         if (!id) return
         
@@ -66,10 +67,11 @@ const TripInformation: React.FC = () => {
     }, [id])
     
 
-
+// Jeigu kelionės duomenų nėra, rodomas loading indikatorius
     if (!trip) return <CircularProgress />
     if (!trip.title) return <p>Klaida: Kelionės duomenys nepasiekiami</p>
 
+    // Apskaičiuojama kelionės trukmė ir galutinė kaina
     const tripDuration = Number(trip.duration.match(/\d+/)?.[0]) || 1
     const selectedHotelObj = hotels.find((hotel) => hotel.id === selectedHotel);
     const hotelPricePerNight = selectedHotelObj ? Number(selectedHotelObj.price) : 0;
@@ -77,11 +79,12 @@ const TripInformation: React.FC = () => {
     const totalHotelCost = selectedHotelObj ? hotelPricePerNight * tripDuration : 0;
     const totalTripCost = (Number(trip.price) || 0) + totalHotelCost;
 
-
+// Funkcija užklausai pateikti
     const submitHandler = () => {
         setIsPopupOpen(true)
     }
 
+    // Funkcija uždaryti popup langą
     const closePopup = () => {
         setIsPopupOpen(false)
     }

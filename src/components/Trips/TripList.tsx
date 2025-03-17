@@ -7,13 +7,19 @@ import './trip.scss'
 import { Button } from "@mui/material";
 
 const TripList: React.FC = () => {
+    // Gauname kelionių sąrašą iš konteksto
     const { trips } = useTravelPageContext()
+
+    // Naudojame vietinę būseną filtruotoms kelionėms saugoti
     const [filteredTrips, setFilteredTrips] = useState(trips)
 
+
+    // Kai pasikeičia kelionių sąrašas, atnaujiname filtruotus rezultatus
     useEffect(() => {
         setFilteredTrips(trips)
     }, [trips])
 
+    // Funkcija, skirta filtruoti keliones pagal kategorijas ir paieškos tekstą
     const handleFilterChange = (categories: string[], searchTerm: string) => {
         const newFilteredTrips = trips.filter(trip =>
             (categories.length === 0 || categories.includes(trip.category)) &&

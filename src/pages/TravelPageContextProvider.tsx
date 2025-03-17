@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useReducer } from "r
 import { AgenciesItem, HotelItem, initialState, TravelItem, TravelPageActionType, travelPageReducer, TravelPageState } from "./travelReducer";
 import { API_URL } from "../components/config";
 
-
+// Sukuriamas konteksto tipas su visomis galimomis funkcijomis
 interface TravelPageContextType extends TravelPageState {
     addItem: (item: TravelItem) => Promise<void>
     removeItem: (id: string) => Promise<void>
@@ -13,7 +13,7 @@ interface TravelPageContextType extends TravelPageState {
     addAgency: (agency: AgenciesItem) => Promise<void>
 }
 
-
+// Sukuriamas React kontekstas
 const TravelPageContext = createContext<TravelPageContextType | undefined>(undefined)
 
 type TravelPageContextProviderProps = {
@@ -22,10 +22,12 @@ type TravelPageContextProviderProps = {
 
 
 export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps> = ({ children }) => {
+        // Naudojamas useReducer valdyti būseną
+
     const [travelPageState, dispatch] = useReducer(travelPageReducer, initialState)
    
 
-    
+     // Funkcija, skirta gauti kelionių, viešbučių ir agentūrų duomenis iš API
     const fetchDestinations = useCallback(async () => {
         try {
             const [destinationsRes, hotelsRes, agenciesRes] = await Promise.all([
@@ -45,7 +47,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
             ])
             console.log("Gauti kelionių duomenys:", destinations);
             
-
+// Išsaugomi duomenys į būseną
             dispatch({ type: TravelPageActionType.SET_DESTINATIONS, payload: destinations })
             dispatch({ type: TravelPageActionType.ADD_HOTELS, payload: hotels })
             dispatch({ type: TravelPageActionType.ADD_AGENCY, payload: agencies })
@@ -55,6 +57,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
 
     }, [])
 
+     // Funkcija, skirta gauti agentūrų duomenis iš API
     const fetchAgencies = useCallback(async () => {
         try {
             const res = await fetch(`${API_URL}/agencies`)
@@ -68,7 +71,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
     }, [])
 
 
-
+// Funkcija, skirta pridėti naują kelionės vietą
     const addItem = useCallback(async (item: TravelItem) => {
         try {
             const res = await fetch(`${API_URL}/destinations`, {
@@ -85,7 +88,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         }
     }, [])
 
-    
+     // Funkcija, skirta pridėti naują viešbutį
     const addHotel = useCallback(async (hotel: HotelItem) => {
         try {
             const res = await fetch(`${API_URL}/hotels`, {
@@ -102,6 +105,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         }
     }, [])
 
+    // Funkcija, skirta pridėti naują kelionių agentūrą
     const addAgency = useCallback(async (agency: AgenciesItem) => {
         try {
             const res = await fetch(`${API_URL}/agencies`, {
@@ -118,7 +122,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         }
     }, [])
 
-   
+    // Funkcija, skirta pašalinti kelionės vietą pagal ID
     const removeItem = useCallback(async (id: string) => {
         try {
             const res = await fetch(`${API_URL}/destinations/${id}`, { method: "DELETE" })
@@ -130,7 +134,7 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         }
     }, [])
 
-  
+  // Funkcija, skirta atnaujinti kelionės vietą
     const updateItem = useCallback(async (item: TravelItem) => {
         try {
             const res = await fetch(`${API_URL}/destinations/${item.id}`, {
@@ -146,11 +150,13 @@ export const TravelPageContextProvider: React.FC<TravelPageContextProviderProps>
         }
     }, [])
 
+    // Automatiškai įkelia duomenis kai komponentas užkraunamas
     useEffect(() => {
         fetchDestinations()
     }, [fetchDestinations])
 
    
+     // Konteksto reikšmė su visomis funkcijomis
     const ctxValue: TravelPageContextType = {
         ...travelPageState,
         addItem,

@@ -16,6 +16,7 @@ const AgencyPage: React.FC = () => {
     useEffect(() => {
         const fetchAgencyData = async () => {
             try {
+                // Gauname visų agentūrų duomenis iš API
                 const agencyRes = await fetch(`${API_URL}/agencies`)
                 if (!agencyRes.ok) throw new Error("Nepavyko gauti agentūros duomenų")
 
@@ -30,6 +31,7 @@ const AgencyPage: React.FC = () => {
 
                 setAgency(foundAgency)
 
+                // Gauname kelionių duomenis iš API
                 const tripsRes = await fetch(`${API_URL}/destinations`)
                 if (!tripsRes.ok) throw new Error("Nepavyko gauti agentūros kelionių")
 
@@ -39,6 +41,7 @@ const AgencyPage: React.FC = () => {
                     throw new Error("Blogas tripsData formatas")
                 }
 
+                // Filtruojame keliones pagal agentūros ID
                 const filteredTrips = tripsData.filter((trip) => trip.agencyId === id)
                 setTrips(filteredTrips)
 
@@ -54,6 +57,7 @@ const AgencyPage: React.FC = () => {
         fetchAgencyData()
     }, [id])
 
+    // Jei duomenys kraunami, rodome pranešimą
     if (loading) return <p>Kraunama...</p>
     if (error) return <p className="error">{error}</p>
 

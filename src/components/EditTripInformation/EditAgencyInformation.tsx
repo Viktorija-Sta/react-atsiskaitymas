@@ -14,6 +14,7 @@ const EditAgencyInformation: React.FC = () => {
         contacts: [{ email: '', phone: '' }]
     })
 
+    // Užkrauna agentūros duomenis pagal ID
     useEffect(() => {
         const fetchAgencyData = async () => {
             try {
@@ -38,6 +39,7 @@ const EditAgencyInformation: React.FC = () => {
         fetchAgencyData()
     }, [id])
 
+    // Tvarko kontaktinių duomenų pakeitimus
     const contactChangeHandler = (index: number, field: "email" | "phone", value: string) => {
         setEditedAgency((prev) => {
             const updatedContacts = [...prev.contacts]
@@ -46,6 +48,7 @@ const EditAgencyInformation: React.FC = () => {
         })
     }
 
+    // Išsaugo pakeistus duomenis į serverį
     const saveChanges = async () => {
         try {
             await fetch(`${API_URL}/agencies/${id}`, {
@@ -56,7 +59,9 @@ const EditAgencyInformation: React.FC = () => {
                 body: JSON.stringify(editedAgency),
             })
 
+            // Nukreipia vartotoją atgal į agentūros puslapį
             navigate(`/agency/${id}`)
+            
         } catch (error) {
             console.error("Klaida išsaugant agentūros duomenis:", error)
         }

@@ -27,6 +27,7 @@ const EditTripInformation: React.FC = () => {
 
     const [newHotel, setNewHotel] = useState<Hotel>({ name: '', price: '' })
    
+    // Užkrauna kelionės ir viešbučių duomenis pagal ID
     useEffect(() => {
         const fetchTripData = async () => {
             try {
@@ -39,6 +40,7 @@ const EditTripInformation: React.FC = () => {
                 console.log("Kelionės duomenys:", tripData)
                 console.log("Viešbučių duomenys:", hotelsData)
 
+                 // Nustato redaguojamos kelionės būseną
                 setEditedTrip({
                     title: tripData.title || '',
                     description: tripData.description || '',
@@ -58,6 +60,7 @@ const EditTripInformation: React.FC = () => {
         fetchTripData()
     }, [id])
 
+    // Pašalina nuotrauką iš galerijos
     const removeImage = (index: number) => {
         setEditedTrip((prev) => ({
             ...prev,
@@ -65,18 +68,21 @@ const EditTripInformation: React.FC = () => {
         }))
     }
 
+    // Prideda naują nuotrauką į galeriją
     const addImageUrl = () => {
         if (!newImageUrl.trim()) return
         setEditedTrip((prev) => ({ ...prev, gallery: [...prev.gallery, newImageUrl.trim()] }))
         setNewImageUrl("")
     }
 
+    // Prideda naują viešbutį į sąrašą
     const addHotel = () => {
         if (!newHotel.name || !newHotel.price) return;
         setEditedTrip((prev) => ({ ...prev, hotels: [...prev.hotels, newHotel] }))
         setNewHotel({ name: "", price: "" })
     }
 
+    // Pašalina viešbutį iš sąrašo
     const removeHotel = (index: number) => {
         setEditedTrip((prev) => ({
             ...prev,
@@ -84,6 +90,7 @@ const EditTripInformation: React.FC = () => {
         }))
     }
 
+    // Tvarko įvesties laukų pakeitimus
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setEditedTrip({ ...editedTrip, [e.target.name]: e.target.value })
     }

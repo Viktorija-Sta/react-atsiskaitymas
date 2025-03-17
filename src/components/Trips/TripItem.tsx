@@ -9,6 +9,7 @@ interface TripItemProps {
 }
 
 const TripItem: React.FC<TripItemProps> = ({ data }) => {
+    // Gauname kontekstą su funkcijomis ir agentūrų duomenimis
     const { removeItem, agencies, fetchAgencies } = useTravelPageContext()
     const { id, title, description, price, image, agencyId } = data
 
@@ -19,12 +20,14 @@ const TripItem: React.FC<TripItemProps> = ({ data }) => {
     console.log("Kelionės agentūros ID:", agencyId)
     console.log("Turimos agentūros:", agencies)
 
+    // Jeigu agentūrų duomenys dar neužkrauti, iškviečiame jų gavimą
     useEffect(() => {
         if (!agencies || agencies.length === 0) {
             fetchAgencies()
         }
     }, [agencies, fetchAgencies])
 
+    // Kai pasikeičia agentūrų sąrašas arba agentūros ID, ieškome atitinkamos agentūros
     useEffect(() => {
         if (agencyId && agencies.length > 0) {
             const foundAgency = agencies.find(agency => agency.id === agencyId)
@@ -35,6 +38,7 @@ const TripItem: React.FC<TripItemProps> = ({ data }) => {
 
     console.log("Rasta agentūra:", agencyData)
 
+     // Funkcija kelionei pašalinti su patvirtinimu
     const deleteHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
 

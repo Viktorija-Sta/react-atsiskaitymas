@@ -28,27 +28,33 @@ const FormPage: React.FC = () => {
         phone: '',
     })
 
+    // Funkcija unikaliems ID sugeneruoti
     const generateUniqueId = (): string => Math.random().toString(36).slice(2, 11)
 
+     // Funkcija kelionių organizatoriaus duomenų valdymui
     const agencyChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setAgency((prevAgency) => ({ ...prevAgency, [name]: value }))
     }
 
+    // Funkcija formos pateikimui
     const submitHandler = async (e: React.FormEvent) => {
         e.preventDefault()
             
+        // Tikriname, ar tokia kelionė jau egzistuoja
         const existingTrip = trips.find((trip) => trip.title === title)
         if (existingTrip) {
             console.log("Kelionė jau yra sąraše.")
             return
         }
 
+        // Paverčiame galerijos nuorodų eilutę į masyvą
         const galleryUrlArray = galleryLinks.split(",").map(link => link.trim()).filter(link => link !== "")
         const tripId = generateUniqueId()
         const agencyId = generateUniqueId();
 
 
+         // Sukuriame naują kelionių organizatorių
         const newAgency: AgenciesItem = {
             id: agencyId,
             name: agency.name,
@@ -61,6 +67,8 @@ const FormPage: React.FC = () => {
             ]
             
         }
+
+         // Sukuriame naują kelionės objektą
         const newTrip: TravelItem = {
             id: tripId,
             title,
@@ -74,6 +82,7 @@ const FormPage: React.FC = () => {
             agencyId: agencyId
         }
 
+         // Sukuriame naują viešbučio objektą
         const newHotel: HotelItem = {
             id: generateUniqueId(),
             destinationsId: tripId,
@@ -81,6 +90,7 @@ const FormPage: React.FC = () => {
             price: Number(hotelPrice),
         }
 
+         // Pridedame naują kelionę, viešbutį ir agentūrą į kontekstą
          addItem(newTrip)
          addHotel(newHotel)
          addAgency(newAgency)
