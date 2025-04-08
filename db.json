@@ -69,7 +69,6 @@
         "https://lankytinosvietoseuropoje.wordpress.com/wp-content/uploads/2015/03/roma-guay.jpg",
         "https://kelioniuakademija.lt/gallery/new/new13_06/Italija_roma.jpg",
         "https://www.zigzag.lt/wp-content/gallery/roma/cache/shutterstock_61722031-1_Fountain-di-Trevi.jpg-nggid049202-ngg0dyn-0x720-00f0w010c010r110f110r010t010.jpg"
-
       ]
     },
     {
@@ -94,63 +93,69 @@
   "hotels": [
     {
       "id": "1",
-      "destinationsId": "1",
+      "destinationId": "1",
       "name": "Hotel Eiffel",
       "price": 120
     },
     {
       "id": "2",
-      "destinationsId": "1",
+      "destinationId": "1",
       "name": "Hotel Louvre",
       "price": 100
     },
     {
       "id": "3",
-      "destinationsId": "2",
+      "destinationId": "2",
       "name": "Hotel Bali",
       "price": 150
     },
     {
       "id": "4",
-      "destinationsId": "2",
+      "destinationId": "2",
       "name": "Hotel Paradise",
       "price": 200
     },
     {
       "id": "5",
-      "destinationsId": "3",
+      "destinationId": "3",
       "name": "Hotel New York",
       "price": 180
     },
     {
       "id": "6",
-      "destinationsId": "3",
+      "destinationId": "3",
       "name": "Hotel Manhattan",
       "price": 160
     },
     {
       "id": "7",
-      "destinationsId": "4",
+      "destinationId": "4",
       "name": "Hotel Rome",
       "price": 130
     },
     {
       "id": "8",
-      "destinationsId": "4",
+      "destinationId": "4",
       "name": "Hotel Colosseum",
       "price": 110
     },
     {
       "id": "9",
-      "destinationsId": "5",
+      "destinationId": "5",
       "name": "Hotel Tokyo",
       "price": 170
     },
     {
       "id": "10",
-      "destinationsId": "5",
+      "destinationId": "5",
       "name": "Hotel Japan",
       "price": 190
+    },
+    {
+      "id": "uv7jxggs5",
+      "destinationsId": "1y5oh34cu",
+      "name": "svzsvzvdxb",
+      "price": 23
     }
   ],
   "agencies": [
@@ -206,17 +211,6 @@
         {
           "email": "caz@caz.com",
           "phone": "+78237598375298"
-        }
-      ]
-    },
-    {
-      "id": "3flcgvbvf",
-      "name": "zvgdeg",
-      "location": "kazkur toli",
-      "contacts": [
-        {
-          "email": "hbgvfcd@vdf.by",
-          "phone": "345333"
         }
       ]
     }

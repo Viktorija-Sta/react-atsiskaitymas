@@ -18,13 +18,21 @@
                 gap: 0;
             }
     
-            select{
-                
+            
+        }
+        .hotel-info {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+   
+            p {
+                margin: 0;
+                gap: 0;
             }
         }
 
-        button{
-            
-        }
+       
     }
 }

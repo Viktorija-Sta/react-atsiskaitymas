@@ -37,18 +37,22 @@ const FormPage: React.FC = () => {
 
     const submitHandler = async (e: React.FormEvent) => {
         e.preventDefault()
-            
+    
         const existingTrip = trips.find((trip) => trip.title === title)
         if (existingTrip) {
             console.log("Kelionė jau yra sąraše.")
+            navigate(`/trip/${existingTrip.id}`) 
             return
         }
-
-        const galleryUrlArray = galleryLinks.split(",").map(link => link.trim()).filter(link => link !== "")
+    
+        const galleryUrlArray = galleryLinks
+            .split(",")
+            .map(link => link.trim())
+            .filter(link => link !== "")
+    
         const tripId = generateUniqueId()
-        const agencyId = generateUniqueId();
-
-
+        const agencyId = generateUniqueId()
+    
         const newAgency: AgenciesItem = {
             id: agencyId,
             name: agency.name,
@@ -59,8 +63,8 @@ const FormPage: React.FC = () => {
                     phone: agency.phone,
                 }
             ]
-            
         }
+    
         const newTrip: TravelItem = {
             id: tripId,
             title,
@@ -73,19 +77,19 @@ const FormPage: React.FC = () => {
             gallery: galleryUrlArray,
             agencyId: agencyId
         }
-
+    
         const newHotel: HotelItem = {
             id: generateUniqueId(),
             destinationsId: tripId,
             name: hotel,
             price: Number(hotelPrice),
         }
-
-         addItem(newTrip)
-         addHotel(newHotel)
-         addAgency(newAgency)
-
-        navigate("/")
+    
+        await addAgency(newAgency)
+        await addItem(newTrip)
+        await addHotel(newHotel)
+    
+        navigate(`/trip/${tripId}`)
     }
 
     return (
@@ -98,7 +102,6 @@ const FormPage: React.FC = () => {
                 <TextField id="standard-basic" type="number" placeholder="Trukmė (dienomis)" value={duration} onChange={(e) => setDuration(e.target.value)} required />
                 <TextField id="standard-basic" placeholder="Platesnė informacija" value={fullDescription} onChange={(e) => setFullDescription(e.target.value)} required />
                 <TextField id="standard-basic" type="text" placeholder="Titulinė nuotrauka" value={image} onChange={(e) => setImage(e.target.value)} required />
-                <TextField id="standard-basic">Galerijos nuotraukos (nuorodos, atskirkite kableliais)</TextField>
                 <TextField id="standard-basic" value={galleryLinks} onChange={(e) => setGalleryLinks(e.target.value)} placeholder="Įveskite nuorodas, atskirtas kableliais" />
 
                 <div className="select-element">
@@ -116,16 +119,17 @@ const FormPage: React.FC = () => {
 
                 <TextField id="standard-basic" type="number" placeholder="Kaina" value={price} onChange={(e) => setPrice(e.target.value)} required />
 
-                <h3>Kelionių organizatorius</h3>
+                <h3>Kelionių organizatoriaus informacija</h3>
                 <TextField id="standard-basic" type="text" name="name" placeholder="Pavadinimas" value={agency.name} onChange={agencyChangeHandler} required />
                 <TextField id="standard-basic" type="text" name="location" placeholder="Lokacija" value={agency.location} onChange={agencyChangeHandler} required />
                 <TextField id="standard-basic" type="email" name="email" placeholder="El. paštas" value={agency.email} onChange={agencyChangeHandler} required />
                 <TextField id="standard-basic" type="tel" name="phone" placeholder="Telefonas" value={agency.phone} onChange={agencyChangeHandler} required />
 
-
-                <TextField id="standard-basic" type="text" placeholder="Viešbučio pavadinimas" value={hotel} onChange={(e) => setHotel(e.target.value)} required />
-                <TextField id="standard-basic" type="number" placeholder="Viešbučio kaina (€/nakčiai)" value={hotelPrice} onChange={(e) => setHotelPrice(e.target.value)} required />
-
+                <div className="hotel-info">
+                    <p>Viešbučio informacija</p>
+                    <TextField id="standard-basic" type="text" placeholder="Viešbučio pavadinimas" value={hotel} onChange={(e) => setHotel(e.target.value)} required />
+                    <TextField id="standard-basic" type="number" placeholder="Viešbučio kaina (€/nakčiai)" value={hotelPrice} onChange={(e) => setHotelPrice(e.target.value)} required />
+                </div>
                 <Button variant="contained" type="submit">Pridėti naują kelionę</Button>
             </form>
         </div>

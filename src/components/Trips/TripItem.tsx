@@ -75,6 +75,8 @@ const TripItem: React.FC<TripItemProps> = ({ data }) => {
             >
                 {isDeleting ? "Šalinama..." : "Šalinti"}
             </Button>
+
+            
         </div>
     )
 }

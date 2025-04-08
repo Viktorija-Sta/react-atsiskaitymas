@@ -71,13 +71,17 @@ export const travelPageReducer = (state: TravelPageState, action: TravelPageActi
         case TravelPageActionType.ADD_HOTELS:
             return {
                 ...state,
-                hotels: [...state.hotels, ...action.payload],
+                hotels: Array.isArray(action.payload)
+                    ? [...state.hotels, ...action.payload]
+                    : [...state.hotels, action.payload],
             }
 
         case TravelPageActionType.ADD_AGENCY:
             return {
-                 ...state,
-                agencies: [...state.agencies, ...action.payload],
+                ...state,
+                agencies: Array.isArray(action.payload)
+                    ? [...state.agencies, ...action.payload]
+                    : [...state.agencies, action.payload],
             }
 
         case TravelPageActionType.REMOVE_DESTINATION:

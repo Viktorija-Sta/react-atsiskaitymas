@@ -34,7 +34,10 @@ const TripList: React.FC = () => {
                     <Link to="/agencies">
                         <Button variant="outlined"> Visi kelionių organizatoriai</Button>
                     </Link>
-                <SearchElement onFilterChange={handleFilterChange} />
+                <SearchElement 
+                    onFilterChange={handleFilterChange} 
+                    options={trips.map(trip => trip.category)} 
+                />
                 </div>
 
 

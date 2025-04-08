@@ -151,6 +151,9 @@ return (
             <Link to={`/trip/edit/${trip.id}`}>
                 <Button variant="contained">Redaguoti</Button>
             </Link>
+            <Link to={`/`}>
+                <Button variant="contained">Grįžti į sąrašą</Button>
+            </Link>
         </div>
 
             {isPopupOpen && (
